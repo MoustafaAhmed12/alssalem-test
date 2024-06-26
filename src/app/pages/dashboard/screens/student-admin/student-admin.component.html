@@ -1,0 +1,191 @@
+<div class="relative">
+  <div class="pt-4 mb-12">
+    <app-title-screen [title]="'جميع الطلاب'" />
+
+    <!-- globalSearch -->
+    <form class="container mx-auto my-6">
+      <input
+        dir="rtl"
+        id="globalSearch"
+        (input)="onChange($event)"
+        class="w-full px-8 text-xl border rounded shadow-sm h-14 focus:border-2 focus:border-sky-600 focus:outline-none focus:shadow-outline"
+        type="search"
+        placeholder="إبحث ..."
+      />
+    </form>
+
+    <!-- btns -->
+    <div
+      class="relative flex items-center justify-center w-full my-8 sm:justify-end md:gap-x-4 gap-x-2"
+    >
+      <button
+        (click)="showModal()"
+        class="px-4 py-2 text-sm text-white transition-colors border rounded-lg md:text-lg md:px-8 md:py-2 bg-secondaryAdmin hover:bg-opacity-95"
+      >
+        تحديد تاريخ
+      </button>
+      <button
+        (click)="clearDate()"
+        class="px-4 py-2 text-sm text-white transition-colors bg-red-500 border rounded-lg md:text-lg md:px-8 md:py-2 hover:bg-red-600"
+      >
+        مسح التحديد
+      </button>
+    </div>
+
+    <ngx-table
+      [data]="data"
+      [configuration]="configuration"
+      #table
+      [columns]="columns"
+      [noResultsTemplate]="noResultsTemplate"
+      [summaryTemplate]="summaryTemplateRef"
+    >
+    </ngx-table>
+    <ng-template #summaryTemplateRef let-total="total">
+      <th colspan="5">
+        <span class="mb-2 text-logoColor1"
+          >عدد الطلاب المشترين: {{ total }}
+        </span>
+      </th>
+    </ng-template>
+    <ng-template #noResultsTemplate>
+      <td [attr.colspan]="columns.length" class="no-results">
+        لا تُوجد بيانات بعد.
+      </td>
+    </ng-template>
+
+    <!-- model -->
+    <div
+      dir="rtl"
+      [ngClass]="{ 'scale-100': modal }"
+      class="fixed inset-0 top-0 left-0 right-0 z-[110] md:z-50 grid items-center justify-center w-full h-full transition-transform duration-500 scale-0 bg-gray-50 bg-opacity-60 place-items-center"
+    >
+      <div
+        class="flex items-center justify-center mx-auto md:w-[35rem] w-80 sm:px-6"
+      >
+        <div class="bg-white rounded-lg shadow-sm md:border basis-full">
+          <div
+            class="flex justify-between px-2 pt-8 text-center md:text-right lg:px-8"
+          >
+            <h2 class="text-xl font-bold lg:text-3xl text-primaryAdmin">
+              أختر تاريخ
+            </h2>
+            <button (click)="hideModal()" class="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 transition-all duration-500 hover:rotate-180 hover:scale-125 hover:text-red-700"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <form
+            [formGroup]="this.formData"
+            (ngSubmit)="onSubmit()"
+            class="space-y-4 rounded-lg"
+            autocomplete="off"
+          >
+            <div class="py-4 bg-white rounded-lg md:px-4 lg:px-8">
+              <div class="rounded-md">
+                <div class="mt-3 bg-white rounded-lg">
+                  <div class="relative bg-inherit">
+                    <input
+                      type="date"
+                      name="startDate"
+                      formControlName="startDate"
+                      id="startDate"
+                      placeholder="أدخل  التاريخ"
+                      class="w-full px-4 py-2 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-2 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                    /><label
+                      for="startDate"
+                      class="absolute right-0 px-1 mx-1 text-lg text-gray-500 transition-all cursor-text -top-3 bg-inherit peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-6 peer-focus:-top-1 peer-focus:text-sky-600 peer-focus:text-sm"
+                    >
+                      من تاريخ</label
+                    >
+                  </div>
+                  @if (submitted && formData.controls['startDate'].errors) {
+                  <div>
+                    @if (formData.controls['startDate'].errors['required'] ) {
+                    <p class="text-sm text-red-500">هذا الحقل مطلوب</p>
+                    }
+                  </div>
+                  }
+                </div>
+
+                <div class="mt-6 bg-white rounded-lg">
+                  <div class="relative bg-inherit">
+                    <input
+                      type="date"
+                      name="endDate"
+                      formControlName="endDate"
+                      id="endDate"
+                      placeholder="أدخل التاريخ"
+                      class="w-full px-4 py-2 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-2 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                    /><label
+                      for="endDate"
+                      class="absolute right-0 px-1 mx-1 text-lg text-gray-500 transition-all cursor-text -top-3 bg-inherit peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-6 peer-focus:-top-1 peer-focus:text-sky-600 peer-focus:text-sm"
+                    >
+                      الي تاريخ</label
+                    >
+                  </div>
+
+                  @if (submitted && formData.controls['endDate'].errors) {
+                  <div>
+                    @if (formData.controls['endDate'].errors['required'] ) {
+                    <p class="text-sm text-red-500">هذا الحقل مطلوب</p>
+                    }
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="grid w-full place-items-center">
+              <button
+                type="submit"
+                class="flex justify-center px-8 py-3 mb-8 text-xl font-medium text-white transition-colors border-2 border-transparent rounded-lg bg-secondaryAdmin hover:bg-primaryAdmin w-fit focus:outline-none focus:ring-2 focus:ring-offset-2"
+              >
+                @if (isLoading) {
+                <div
+                  class="w-8 h-8 border-8 border-purple-600 border-dashed rounded-full animate-spin border-t-transparent"
+                ></div>
+                } @else { عرض النتائج }
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="mt-6" dir="rtl">
+      <button
+        class="flex items-center p-2 text-sm text-white transition-colors bg-green-600 border rounded-lg gap-x-2 md:text-lg md:px-4 md:py-2 hover:bg-green-700"
+      >
+        <span>Export</span>
+
+        <svg
+          class="YIUegm7fh_CpJbivTu6B MnxxlQlR1H0xJuMEE8Yr fhCwost7CSNRc2WSHLFW ZEPNZzATe5nPnS0shmrF"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          class="size-6"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+    </div> -->
+  </div>
+</div>

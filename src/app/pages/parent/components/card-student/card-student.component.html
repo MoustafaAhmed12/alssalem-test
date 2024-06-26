@@ -1,0 +1,83 @@
+<div
+  class="w-full mb-6 bg-white rounded-lg shadow-2xl opacity-75 md:mb-0 basis-1/2 lg:mx-0"
+>
+  <div class="p-4 text-center md:p-12 lg:text-right">
+    <h1 class="pt-8 text-3xl font-bold lg:pt-0">
+      الطالب / {{ studentDetails.name }}
+    </h1>
+    <div
+      class="w-4/5 pt-3 mx-auto border-b-2 border-green-500 opacity-25 lg:mx-0"
+    ></div>
+    <!-- <p
+      class="flex items-center justify-center pt-4 text-base font-bold gap-x-4 lg:justify-start"
+    >
+      <svg
+        class="h-4 text-green-700 fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z"
+        />
+      </svg>
+      أسم المدرسة / {{ studentDetails.schoolName }}
+    </p> -->
+    <p class="flex items-center justify-start pt-4 text-base font-bold gap-x-4">
+      <svg
+        class="h-4 text-green-700 fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z"
+        />
+      </svg>
+      الإيميل / {{ studentDetails.email }}
+    </p>
+    <p class="flex items-center justify-start pt-4 text-base font-bold gap-x-4">
+      <svg
+        class="h-4 text-green-700 fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z"
+        />
+      </svg>
+      رقم الفصل / {{ studentDetails.classNo }}
+    </p>
+
+    <div
+      class="flex flex-col items-center justify-start pt-4 text-base font-bold gap-y-4 gap-x-4"
+    >
+      <!-- @for (studentsTutorial of studentsTutorials; track studentsTutorial.id) { -->
+      <div class="flex items-center justify-between w-full">
+        <h2>الدورات التي مشترك فيها الطالب</h2>
+        <span
+          class="px-3 text-lg font-medium tracking-tight text-white rounded-full bg-orange shrink-0"
+        >
+          2
+        </span>
+      </div>
+      <div class="self-start">
+        <div class="flex flex-wrap items-center w-full gap-x-4 justify-evenly">
+          <button
+            type="button"
+            class="px-3 py-2 text-white transition-colors rounded-md bg-primaryAdmin hover:bg-orange"
+          >
+            دورة التحصيلي
+          </button>
+          <button
+            type="button"
+            class="px-3 py-2 text-white transition-colors rounded-md bg-primaryAdmin hover:bg-orange"
+          >
+            دورة قدرات
+          </button>
+        </div>
+      </div>
+      <!-- }@empty {
+      <p>هذا الطالب لم يسجل علي أياً من الدورات</p>
+      } -->
+    </div>
+  </div>
+</div>

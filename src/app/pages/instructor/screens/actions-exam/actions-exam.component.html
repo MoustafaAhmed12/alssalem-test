@@ -1,0 +1,447 @@
+<main class="relative">
+  <div
+    class="absolute"
+    [ngClass]="{ '!bg-opacity-60 bg-white z-30 w-full h-full': isLoading }"
+  ></div>
+  <div
+    class="flex items-center justify-center min-h-full px-4 mx-auto my-8 sm:px-6 lg:px-8"
+  >
+    <div class="bg-white border rounded-lg shadow-sm basis-full md:basis-full">
+      <div class="px-8 pt-8">
+        <h2 class="text-4xl font-bold text-primaryAdmin">
+          @if (examId === 0) { أضف امتحان جديد }@else { تعديل امتحان }
+        </h2>
+      </div>
+
+      <form
+        [formGroup]="examForm"
+        (ngSubmit)="onSubmit()"
+        class="space-y-6 rounded-lg"
+        autocomplete="off"
+      >
+        <div class="px-8 py-6 bg-white rounded-lg">
+          <div>
+            <div class="mt-3 bg-white rounded-lg">
+              <div class="relative bg-inherit">
+                <input
+                  type="text"
+                  name="id"
+                  formControlName="id"
+                  id="id"
+                  hidden
+                  class="w-full px-4 py-4 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-2 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div class="grid w-full grid-cols-1 mt-3 md:grid-cols-2 gap-x-4">
+              <div class="col-span-1 py-4 bg-white rounded-lg">
+                <div class="bg-white rounded-lg">
+                  <div class="relative bg-inherit">
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      formControlName="name"
+                      placeholder="أدخل اسم الامتحان"
+                      [ngClass]="
+                        examForm.controls['name'].errors && submitted
+                          ? 'ring-rose-600 '
+                          : 'border-gray-300 focus:ring-sky-600'
+                      "
+                      class="w-full px-4 py-4 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-1 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                    /><label
+                      for="name"
+                      class="absolute right-0 px-1 mx-1 text-lg text-gray-500 transition-all cursor-text -top-3 bg-inherit peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-6 peer-focus:-top-1 peer-focus:text-sky-600 peer-focus:text-sm"
+                      >أدخل اسم الامتحان</label
+                    >
+                  </div>
+
+                  @if (submitted && examForm.controls['name'].errors) {
+                  <div>
+                    @if (examForm.controls['name'].errors['required'] ) {
+                    <p class="text-sm text-red-500">هذا الحقل مطلوب</p>
+                    }
+                  </div>
+                  }
+                </div>
+              </div>
+              <div class="col-span-1 py-4 bg-white rounded-lg">
+                <div class="relative bg-inherit">
+                  <ng-select
+                    [items]="examsTutorials"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [hideSelected]="true"
+                    bindLabel="name"
+                    bindValue="id"
+                    [searchable]="true"
+                    placeholder="أختر أسم الدورة"
+                    formControlName="tutorialId"
+                    (change)="onSeletedTutorial($event)"
+                    [ngClass]="
+                      examForm.controls['tutorialId'].errors && submitted
+                        ? 'ring-rose-600 '
+                        : 'border-gray-300 focus:ring-sky-600'
+                    "
+                    class="w-full p-3 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg disabled:bg-gray-400 peer ring-1 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                  >
+                  </ng-select>
+                  @if (submitted && examForm.controls['tutorialId'].errors) {
+                  <div>
+                    @if (examForm.controls['tutorialId'].errors['required'] ) {
+                    <p class="text-sm text-red-500">هذا الحقل مطلوب</p>
+                    }
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="grid w-full grid-cols-1 mt-3 md:grid-cols-2 gap-x-4">
+              <div class="col-span-1 py-4 bg-white rounded-lg">
+                <div class="relative bg-inherit">
+                  <input
+                    type="number"
+                    id="successPercentage"
+                    name="successPercentage"
+                    formControlName="successPercentage"
+                    placeholder="ادخل نسبة النجاح"
+                    [ngClass]="
+                      examForm.controls['successPercentage'].errors && submitted
+                        ? 'ring-rose-600 '
+                        : 'border-gray-300 focus:ring-sky-600'
+                    "
+                    class="w-full px-4 py-4 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-1 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                  />
+                  <label
+                    for="successPercentage"
+                    class="absolute right-0 px-1 mx-1 text-lg text-gray-500 transition-all cursor-text -top-3 bg-inherit peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-6 peer-focus:-top-1 peer-focus:text-sky-600 peer-focus:text-sm"
+                  >
+                    ادخل نسبة النجاح</label
+                  >
+                </div>
+                @if (submitted && examForm.controls['successPercentage'].errors)
+                {
+                <div>
+                  @if(examForm.controls['successPercentage'].errors['required']
+                  ) {
+                  <p class="text-sm text-red-500">هذا الحقل مطلوب</p>
+
+                  }
+                </div>
+                }
+              </div>
+
+              <div class="col-span-1 py-4 bg-white rounded-lg">
+                <div class="bg-white rounded-lg">
+                  <div class="relative bg-inherit">
+                    <input
+                      type="number"
+                      id="durationInMinutes"
+                      name="durationInMinutes"
+                      formControlName="durationInMinutes"
+                      placeholder="ادخل مدة الإمتحان بالدقيقة "
+                      [ngClass]="
+                        examForm.controls['durationInMinutes'].errors &&
+                        submitted
+                          ? 'ring-rose-600 '
+                          : 'border-gray-300 focus:ring-sky-600'
+                      "
+                      class="w-full px-4 py-4 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-1 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                    />
+                    <label
+                      for="durationInMinutes"
+                      class="absolute right-0 px-1 mx-1 text-lg text-gray-500 transition-all cursor-text -top-3 bg-inherit peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-6 peer-focus:-top-1 peer-focus:text-sky-600 peer-focus:text-sm"
+                    >
+                      ادخل مدة الإمتحان بالدقيقة</label
+                    >
+                  </div>
+                  @if (submitted &&
+                  examForm.controls['durationInMinutes'].errors) {
+                  <div>
+                    @if(examForm.controls['durationInMinutes'].errors['required']
+                    ) {
+                    <p class="text-sm text-red-500">هذا الحقل مطلوب</p>
+
+                    }
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-2 text-xl text-primaryAdmin">
+              <h3>اضافة الأسئلة</h3>
+            </div>
+
+            <div
+              class="w-full p-4 mt-4 border-2 rounded-lg"
+              formArrayName="questions"
+            >
+              <div
+                class="w-full p-2 my-6 border rounded-lg"
+                *ngFor="
+                  let question of getQuestions.controls;
+                  let questionIndex = index
+                "
+                [formGroupName]="questionIndex"
+                [ngClass]="
+                  question.get('isDeleted')?.value === true ? 'hidden' : 'block'
+                "
+              >
+                <div class="mt-3 bg-white rounded-lg">
+                  <div class="relative bg-inherit">
+                    <input
+                      type="text"
+                      name="id"
+                      formControlName="id"
+                      id="id"
+                      hidden
+                      class="w-full px-4 py-4 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-2 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  class="flex flex-wrap items-center w-full md:flex-nowrap gap-x-4"
+                >
+                  <div class="w-fit ms-6">
+                    <input
+                      type="checkbox"
+                      name="isDeleted"
+                      id="isDeleted"
+                      formControlName="isDeleted"
+                      hidden
+                    />
+                    <button
+                      type="button"
+                      (click)="removeQuestion(questionIndex)"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6 transition-all duration-500 hover:rotate-180 hover:scale-125 hover:text-red-700"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M6 18 18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="w-full py-4 bg-white rounded-lg me-6">
+                    <div class="relative bg-inherit">
+                      <ng-select
+                        [items]="allQuestionTypes"
+                        [multiple]="false"
+                        [closeOnSelect]="true"
+                        [hideSelected]="true"
+                        bindLabel="name"
+                        bindValue="id"
+                        [searchable]="true"
+                        formControlName="questionTypeId"
+                        placeholder="أختر نوع السؤال"
+                        [ngClass]="
+                          examForm.controls.questions.controls[0].controls[
+                            'questionTypeId'
+                          ].errors && submitted
+                            ? 'ring-rose-600 '
+                            : 'border-gray-300 focus:ring-sky-600'
+                        "
+                        class="w-full p-2 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg disabled:bg-gray-400 peer ring-1 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                      >
+                      </ng-select>
+
+                      @if (submitted &&
+                      examForm.controls.questions.controls[0].controls[
+                      'questionTypeId' ].errors) {
+                      <div>
+                        @if ( examForm.controls.questions.controls[0].controls[
+                        'questionTypeId' ].errors['required'] ) {
+                        <p class="text-sm text-red-500">هذا الحقل مطلوب</p>
+
+                        }
+                      </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+
+                <div class="py-4 bg-white rounded-lg">
+                  <div
+                    class="relative flex items-center justify-center w-full p-6 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
+                    (paste)="onPaste($event, questionIndex)"
+                    (drop)="onFileDrop($event, questionIndex)"
+                    (dragover)="onDragOver($event)"
+                    (dragleave)="onDragLeave($event)"
+                  >
+                    <input
+                      type="text"
+                      class="absolute inset-0 z-50 flex items-center justify-center w-full h-full opacity-0 cursor-pointer"
+                      name="questionImage"
+                      id="questionImage"
+                    />
+                    @if (!question.get('questionImage')?.value ) {
+
+                    <div class="text-center">
+                      <img
+                        class="w-12 h-12 mx-auto"
+                        src="https://www.svgrepo.com/show/357902/image-upload.svg"
+                        alt=""
+                      />
+
+                      <h3
+                        class="mt-2 text-sm font-medium text-gray-900 cursor-pointer"
+                      >
+                        <label
+                          for="file-upload"
+                          class="relative cursor-pointer"
+                        >
+                          <span>Drag and drop</span>
+                          <span class="text-indigo-600"> or browse </span>
+                          <span>to upload</span>
+                          <span class="text-indigo-600"> or paste </span>
+                          <input
+                            id="file-upload"
+                            name="file-upload"
+                            type="file"
+                            class="sr-only"
+                          />
+                        </label>
+                      </h3>
+                      <p class="mt-1 text-lg text-blue-600">أختر صورة مميزة</p>
+                    </div>
+                    }@else {
+                    <img
+                      [src]="question.get('questionImage')?.value"
+                      class="flex items-center justify-center object-fill w-full max-h-96"
+                      id="preview"
+                    />
+                    }
+                  </div>
+                </div>
+                <div class="my-8 text-xl ms-4 text-primaryAdmin">
+                  <h3>أختر الإجابة الصحيحة</h3>
+                </div>
+
+                <div
+                  class="flex items-center w-full p-2 my-6 bg-white border rounded-lg justify-evenly"
+                  formArrayName="answers"
+                >
+                  <div
+                    *ngFor="
+                      let itemAns of examForm.controls.questions.controls.at(
+                        questionIndex
+                      )?.controls?.answers?.controls;
+                      let answerIndex = index
+                    "
+                    [formGroupName]="answerIndex"
+                  >
+                    <div class="relative bg-inherit">
+                      <input
+                        type="text"
+                        name="id"
+                        formControlName="id"
+                        id="id"
+                        hidden
+                        class="w-full px-4 py-4 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-2 ring-gray-500 focus:ring-sky-600 focus:outline-none"
+                      />
+                    </div>
+                    <label class="flex gap-2">
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        hidden
+                        formControlName="name"
+                      />
+                      {{ itemAns.controls["name"].value }}
+                      <input
+                        type="checkbox"
+                        name="isRight"
+                        id="isRight"
+                        formControlName="isRight"
+                        (change)="onAnswerChange(questionIndex)"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- add Question -->
+            <div class="flex justify-end my-4 basis-4/12">
+              <button
+                (click)="addQuestion()"
+                type="button"
+                class="flex items-center px-4 py-2 text-sm text-white transition-colors border rounded-lg gap-x-2 md:text-lg md:px-6 md:py-2 bg-primaryAdmin hover:bg-opacity-95"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+                إضافة
+              </button>
+            </div>
+          </div>
+
+          <div class="py-4 my-4 bg-white rounded-lg">
+            <div
+              class="relative flex items-center justify-end font-semibold bg-inherit gap-x-4"
+            >
+              <h4 class="text-lg">المجموع الكلي:</h4>
+              <p class="text-lg text-logoColor1">
+                {{ examForm.get("totalGrades")?.value }}
+              </p>
+              <input
+                type="number"
+                hidden
+                id="totalGrades"
+                name="totalGrades"
+                formControlName="totalGrades"
+                class="px-4 py-4 my-2 text-xl text-gray-900 placeholder-transparent bg-transparent focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center w-full mt-3">
+          <button
+            type="submit"
+            class="flex items-center justify-center px-12 py-4 mb-8 text-xl font-medium text-white transition-colors border-2 border-transparent rounded-lg w-fit bg-secondaryAdmin hover:bg-primaryAdmin focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
+            @if (isLoading) {
+            <div
+              class="w-8 h-8 border-8 border-purple-800 border-dashed rounded-full animate-spin border-t-transparent"
+            ></div>
+            } @else { @if (examId === 0) { أضف امتحان }@else { تعديل امتحان } }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  @if(isLoading) {
+  <div class="fixed z-50 top-[40%] left-[40rem] bg-opacity-60">
+    <div class="flex items-center">
+      <div
+        class="w-16 h-16 border-8 border-blue-600 border-dashed rounded-full animate-spin"
+      ></div>
+    </div>
+  </div>
+
+  }
+</main>

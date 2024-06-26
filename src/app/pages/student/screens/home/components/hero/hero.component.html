@@ -1,0 +1,38 @@
+<section class="w-full h-screen">
+  <div
+    class="flex flex-col items-center justify-between w-full h-full px-6 pt-40 mx-auto md:pt-6 bg-slate-50 md:flex-row sm:px-8 md:px-12"
+  >
+    <div class="flex w-fit">
+      <div class="basis-full pe-0 md:pe-16 md:ps-0 xl:ps-24">
+        <div
+          [ngClass]="[mainColorText]"
+          class="text-4xl font-extrabold lg:text-5xl"
+        >
+          <h1 class="text-black">أهلا بكم</h1>
+          <h1 class="my-8">
+            <span class="text-black">في موقع</span> {{ firstWord }}
+          </h1>
+          <h1>{{ desc }}</h1>
+        </div>
+        @if (!isAuth) {
+        <div class="mt-16 text-center">
+          <a
+            routerLink="/register"
+            [ngClass]="[secondaryColorBg, mainColorBgHover]"
+            class="px-8 py-4 text-xl font-semibold text-white transition-all rounded-full cursor-pointer hover:text-white"
+          >
+            <span> التسجيل بالموقع </span>
+          </a>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="w-10/12 mt-6 md:mt-0 md:w-5/12">
+      <img
+        class="w-11/12"
+        src="./../../../../../../../assets/imgs/0-16.png"
+        alt="student"
+      />
+    </div>
+  </div>
+</section>

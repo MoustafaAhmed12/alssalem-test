@@ -1,0 +1,47 @@
+<div class="flex flex-col items-center justify-start px-8 gap-y-4 lg:ps-16">
+  @if ( isAuth ) {
+  <div
+    class="h-80 px-8 md:w-10/12 lg:w-7/12 w-full self-start rounded-[12px] bg-white p-4 shadow-md border border-b-0"
+  >
+    <app-add-comment />
+  </div>
+  }
+  <div
+    class="flex flex-col md:px-8 px-4 mb-6 md:w-10/12 lg:w-7/12 w-full self-start rounded-[12px] bg-white p-4 shadow-md border"
+  >
+    @for (comm of comments; track $index) {
+    <h1 class="my-2 text-2xl font-semibold text-logoColor1">
+      أراء الطلاب في الدورة
+    </h1>
+    <div class="p-3 my-3 ml-3 border rounded-md">
+      <div class="flex items-center gap-3">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="p-1 border-2 rounded-full size-10 text-sky-700"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+          />
+        </svg>
+
+        <div>
+          <h3 class="font-bold">{{ comm.userName }}</h3>
+          <p>{{ comm.createdAt | date : "longDate" }}</p>
+        </div>
+      </div>
+
+      <p class="my-3 text-gray-600 md:ps-14 ps-4">{{ comm.comment }}</p>
+    </div>
+    }@empty {
+    <p class="my-4 text-lg text-red-600">لا يوجد تعليقات لهذة الدورة</p>
+    }
+  </div>
+</div>
+
+<div class="flex items-center px-8 lg:ps-16"></div>

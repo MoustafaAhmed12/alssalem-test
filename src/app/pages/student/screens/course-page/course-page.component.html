@@ -1,0 +1,428 @@
+<section
+  [ngClass]="isLoading() === true ? 'h-screen w-full' : ''"
+  class="flex flex-col pt-[100px] gap-y-12"
+>
+  @if(isLoading() === true) {
+  <div
+    class="fixed z-50 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 bg-opacity-60"
+  >
+    <div class="relative flex items-center justify-center">
+      <div
+        class="absolute border-t-4 border-b-4 rounded-full border-secondaryAdmin w-36 h-36 animate-spin"
+      ></div>
+      <img [src]="logo" class="rounded-full h-28 w-28" />
+    </div>
+  </div>
+  }
+  <div
+    class="absolute"
+    [ngClass]="{ '!bg-opacity-100 bg-white z-30 w-full h-full': isLoading() }"
+  ></div>
+  @if (isLoading() === false) {
+  <div>
+    <div
+      class="relative bg-[#34B08F] text-white min-h-[26rem] px-2 md:px-8 lg:ps-10 py-8"
+    >
+      <div
+        class="flex items-center w-full lg:justify-between justify-evenly lg:w-1/2"
+      >
+        <!-- teacherName -->
+        <div class="flex items-center self-start my-6 cursor-pointer gap-x-4">
+          <img
+            src="https://alssalem.com/wp-content/uploads/nsl_avatars/11e12aa2f58df508399002b0625ccd2f-96x96.png"
+            alt=""
+            class="rounded-full w-14 h-14"
+          />
+          <div class="flex flex-col font-medium text-white gap-y-2">
+            <h4 class="text-lg text-gray-100">المعلم</h4>
+            <h3
+              class="text-base font-semibold text-black transition-colors md:text-xl hover:text-orange-400"
+            >
+              أ. {{ tutorialDetails.teacherName }}
+            </h3>
+          </div>
+        </div>
+        <!-- category -->
+        <div
+          class="flex items-center self-start my-6 cursor-pointer ms-8 gap-x-4"
+        >
+          <div class="self-start">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-14"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+              />
+            </svg>
+          </div>
+
+          <div class="flex flex-col font-medium text-white gap-y-2">
+            <h4 class="text-base text-gray-100">التصنيف</h4>
+            <h3
+              class="text-base font-semibold text-black transition-colors md:text-lg hover:text-orange-400"
+            >
+              {{ tutorialDetails.parentCategoryName }} &gt;
+              {{ tutorialDetails.categoryName }}
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="w-full my-6 lg:w-8/12">
+        <h2 class="text-4xl text-black lg:text-6xl md:text-5xl">
+          دورة {{ tutorialDetails.name }}
+        </h2>
+      </div>
+      <div
+        class="flex flex-wrap w-full gap-4 pt-8 mt-12 border-t justify-evenly lg:justify-between lg:gap-x-0 lg:w-1/2 border-stone-400"
+      >
+        <!-- weaks -->
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 text-black"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          <span class="mx-2 text-xl">{{ tutorialDetails.weeks }}</span>
+          <span class="text-xl">اسبوع</span>
+        </div>
+        <!-- student -->
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 text-black"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+          <span class="mx-2 text-xl">{{
+            tutorialDetails.studentsNumbers
+          }}</span>
+          <span class="text-xl">طالب</span>
+        </div>
+
+        <div class="flex items-center">
+          <svg
+            id="Layer_1"
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 97.45 122.88"
+            class="w-6 h-6 fill-black"
+          >
+            <title>exam</title>
+            <path
+              d="M24.19,50.27H18.65v2.1h6.79V56.8H13.12V39.5H25.3l-.69,4.43h-6v2.32h5.54v4Zm3.62,40.84a2.22,2.22,0,0,1,3.16,0,2.28,2.28,0,0,1,0,3.2l-2.74,2.8L31,99.91a2.24,2.24,0,0,1,0,3.17,2.22,2.22,0,0,1-3.15,0l-2.72-2.78-2.74,2.79a2.22,2.22,0,0,1-3.16,0,2.27,2.27,0,0,1,0-3.2l2.76-2.81-2.76-2.8a2.25,2.25,0,0,1,0-3.18,2.23,2.23,0,0,1,3.15,0l2.72,2.78,2.74-2.79ZM17.29,76a2.73,2.73,0,1,1,4.54-3l1.48,1.63,5.18-6.46a2.72,2.72,0,1,1,4.21,3.46l-7.4,8.94a3.78,3.78,0,0,1-.65.61,2.74,2.74,0,0,1-3.8-.75L17.29,76ZM37.66,5.12V10.2a2.57,2.57,0,0,1-2.32,2.54,2.92,2.92,0,0,1-.9.13H25V23.39H72.44V12.88H63a2.88,2.88,0,0,1-.9-.13,2.57,2.57,0,0,1-2.32-2.54V5.13ZM23.73,28.61A3.92,3.92,0,0,1,21,27.48c-.09-.1-.13-.19-.22-.28a3.92,3.92,0,0,1-.9-2.45V19.58H5.67a.47.47,0,0,0-.4.18.73.73,0,0,0-.19.42v97a.43.43,0,0,0,.19.41.56.56,0,0,0,.4.18H91.78a.56.56,0,0,0,.4-.18.45.45,0,0,0,.19-.41v-97a.68.68,0,0,0-.19-.41.5.5,0,0,0-.4-.18H77.57v5.17a4,4,0,0,1-.9,2.45c-.09.09-.14.18-.23.28a3.9,3.9,0,0,1-2.72,1.13Zm-18,94.27a5.67,5.67,0,0,1-4-1.68,5.62,5.62,0,0,1-1.68-4v-97a5.6,5.6,0,0,1,1.68-4,5.62,5.62,0,0,1,4-1.68H19.92V11.66a3.8,3.8,0,0,1,1.13-2.73,3.88,3.88,0,0,1,2.73-1.14h8.8V4.27a4.19,4.19,0,0,1,1.27-3,4.2,4.2,0,0,1,3-1.27H60.6a4.23,4.23,0,0,1,3,1.27,4.23,4.23,0,0,1,1.27,3V7.8h8.8a3.89,3.89,0,0,1,3.86,3.87v2.81H91.74a5.74,5.74,0,0,1,5.71,5.71v97a5.6,5.6,0,0,1-1.68,4,5.71,5.71,0,0,1-4,1.68ZM77.6,76.27a2.58,2.58,0,1,0,0-5.16H43.25a2.58,2.58,0,0,0,0,5.16Zm0,23.34a2.58,2.58,0,1,0,0-5.16H43.25a2.58,2.58,0,0,0,0,5.16ZM33.73,39.5l1.91,4.62h.28l1.91-4.62h6L40,47.86l3.85,8.94H37.69l-2.08-5h-.25l-2,5H27.44L31.21,48,27.44,39.5ZM50.38,56.8H44.54L49,39.5h8.55l4.49,17.3H56.23l-.64-2.74H51l-.64,2.74Zm2.78-12L52,49.66h2.55l-1.11-4.85Zm15.89,12H63.26l1.06-17.3h7.22l2.16,8.8h.2l2.15-8.8h7.23l1,17.3H78.55l-.34-8.39H78l-2.1,8.39H71.68l-2.13-8.39h-.17l-.33,8.39Z"
+            />
+          </svg>
+          <span class="mx-2 text-xl">{{
+            tutorialDetails.totalExamsNumber
+          }}</span>
+          <span class="text-xl">اختبار</span>
+        </div>
+      </div>
+
+      <!-- course Details -->
+      <div
+        class="absolute hidden transition-all duration-500 bg-white border-2 rounded-lg cursor-pointer lg:block lg:top-52 lg:left-10 xl:left-28 w-fit lg:mb-0"
+      >
+        <div class="flex flex-col p-2 xl:px-6">
+          <div class="self-center basis-full">
+            <img
+              [src]="tutorialDetails.img"
+              alt="course1"
+              width="350"
+              height="320"
+            />
+          </div>
+          <div class="flex flex-col mt-4 gap-y-2 ms-4">
+            <div class="flex items-center text-black gap-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-7 text-sky-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"
+                />
+              </svg>
+              <span class="text-xl">
+                {{ tutorialDetails.totalVideoNumber }}
+                <span class="ms-1">درس</span>
+              </span>
+            </div>
+            <div class="flex items-center text-black gap-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-7 text-sky-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
+                />
+              </svg>
+
+              <span class="text-xl">
+                {{ allUnits.length }}
+                <span class="ms-1">وحدة</span>
+              </span>
+            </div>
+            <div class="flex items-center text-black gap-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-8 text-sky-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                />
+              </svg>
+
+              <span class="text-xl"
+                >{{ tutorialDetails.totalVideoNumber }}
+                <span class="ms-1">ملف</span>
+              </span>
+            </div>
+            <div class="flex items-center text-black gap-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-8 text-sky-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"
+                />
+              </svg>
+
+              <span class="text-lg">
+                قياس مستوى التقدم والانجاز عبر الدورة
+              </span>
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center px-2 py-6 gap-y-4 basis-full"
+          >
+            <div class="flex text-lg gap-x-3">
+              <p class="text-lg line-through text-textNav">
+                {{ tutorialDetails.priceBeforeDiscount | currency : " " }} ر.س
+              </p>
+              <p class="text-3xl text-orange-400">
+                {{ tutorialDetails.price | currency : " " }} ر.س
+              </p>
+            </div>
+            <button
+              routerLink="/checkout"
+              class="px-8 py-2 text-lg text-white transition-colors bg-orange-400 border rounded-full w-fit hover:bg-opacity-80"
+            >
+              شراء الأن
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid w-full place-items-center">
+      <div
+        class="w-10/12 mt-4 bg-white border-2 rounded-lg cursor-pointer lg:hidden lg:mb-0"
+      >
+        <div class="flex flex-col p-2 xl:px-6">
+          <div class="self-center basis-full">
+            <img
+              [src]="tutorialDetails.img"
+              alt="course1"
+              width="350"
+              height="320"
+            />
+          </div>
+          <div class="flex flex-col mt-4 gap-y-2 ms-2">
+            <div class="flex items-center text-black gap-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-7 text-sky-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"
+                />
+              </svg>
+              <span class="text-xl">
+                {{ tutorialDetails.totalVideoNumber }}
+                <span class="ms-1">درس</span>
+              </span>
+            </div>
+            <div class="flex items-center text-black gap-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-7 text-sky-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
+                />
+              </svg>
+
+              <span class="text-xl">
+                {{ allUnits.length }}
+                <span class="ms-1">وحدة</span>
+              </span>
+            </div>
+            <div class="flex items-center text-black gap-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-8 text-sky-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                />
+              </svg>
+
+              <span class="text-xl"
+                >{{ tutorialDetails.totalVideoNumber }}
+                <span class="ms-1">ملف</span>
+              </span>
+            </div>
+            <div class="flex items-center text-black gap-x-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-8 text-sky-800"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"
+                />
+              </svg>
+
+              <span class="text-lg">
+                قياس مستوى التقدم والانجاز عبر الدورة
+              </span>
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center px-2 py-6 gap-y-4 basis-full"
+          >
+            <div class="flex text-lg gap-x-3">
+              <p class="text-lg line-through text-textNav">
+                {{ tutorialDetails.priceBeforeDiscount | currency : " " }} ر.س
+              </p>
+              <p class="text-3xl text-orange-400">
+                {{ tutorialDetails.price | currency : " " }} ر.س
+              </p>
+            </div>
+            <button
+              routerLink="/checkout"
+              class="px-8 py-2 text-lg text-white transition-colors bg-orange-400 border rounded-full w-fit hover:bg-opacity-80"
+            >
+              شراء الأن
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- tabs -->
+    <div class="w-full px-2 mt-8 md:px-8 md:w-10/12 lg:w-7/12 lg:ps-16">
+      <div class="flex border-b md:gap-x-6 gap-x-2">
+        @for (tab of tabs; track tab.label; let i = $index ) {
+        <div
+          (click)="selectTab(i)"
+          [ngClass]="selectedTab === i ? 'border-b-2 border-blue-500' : ''"
+          class="px-2 py-2 cursor-pointer"
+        >
+          <h2 class="text-lg md:text-2xl">{{ tab.label }}</h2>
+        </div>
+        }
+      </div>
+
+      <!-- tabs Content -->
+      <div class="p-4 my-6 mt-4 border">
+        @if (selectedTab === 0) {
+        <div [@tabContentAnimation]="'active'">
+          <!-- <h2 class="text-3xl text-logoColor1">وصف الدورة</h2> -->
+          <p class="mt-4 text-lg ps-6">{{ tutorialDetails.description }}</p>
+        </div>
+        } @else if (selectedTab === 1) {
+        <div [@tabContentAnimation]="'active'">
+          @for (unit of allUnits; track $index; let first = $first) {
+          <app-content-of-course [unit]="unit" />
+          }@empty {
+          <div
+            class="px-10 py-4 text-yellow-600 bg-orange-200 border-l-4 border-yellow-500 rounded-lg"
+          >
+            <p class="mb-2 text-lg font-semibold">عفواً</p>
+            <p>لا يوجد محتوي لهذا الدورة بعد.</p>
+          </div>
+          }
+          <app-exams-course [exams]="tutorialDetails.exams" />
+          <!-- <app-content-of-course /> -->
+        </div>
+        } @else {
+        <h2>الملفات</h2>
+        }
+      </div>
+    </div>
+
+    <!-- comments -->
+    <app-comments-student [comments]="comments" />
+  </div>
+  }
+</section>

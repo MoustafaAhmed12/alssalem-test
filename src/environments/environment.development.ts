@@ -1,0 +1,18 @@
+export const environment = {
+  production: false,
+  BASE_URL: 'https://elsalem.runasp.net',
+  // BASE_URL: 'http://zeyad246-001-site1.ktempurl.com',
+  logo: './../assets/imgs/logo2.png',
+  firstWord: 'السالم',
+  desc: 'للقدرات و التحصيلي',
+  mainColorText: 'text-[#36b290]',
+  mainColorBg: 'bg-[#36b290]',
+  mainColorBgHover: 'hover:bg-[#36b290]',
+  mainColorBgText: 'hover:text-[#36b290]',
+  secondaryColorText: 'text-[#36b290]',
+  secondaryColorBg: 'bg-[#e5a53f]',
+  secondaryColorBgHover: 'hover:bg-[#e5a53f]',
+  secondaryColorTextHover: 'hover:text-[#e5a53f]',
+  secondaryColorBorder: 'border-[#e5a53f]',
+  secondaryColorBorderHover: 'hover:border-[#e5a53f]',
+};

@@ -1,0 +1,14 @@
+<div class="px-16 pb-8 m-auto md:py-12 mt-28 cateogry">
+  <h2 class="pt-16 text-5xl font-extrabold text-center">الأقسام</h2>
+  <div class="my-8">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 place-items-center lg:grid-cols-4"
+    >
+      @for (item of imgs; track $index) {
+      <a [routerLink]="['/sub-cateogry/', item.id]" class="hover:animate-pop">
+        <img class="w-64" [src]="item.img" [alt]="item.alt + ($index + 1)" />
+      </a>
+      }
+    </div>
+  </div>
+</div>

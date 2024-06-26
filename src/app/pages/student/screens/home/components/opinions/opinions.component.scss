@@ -1,0 +1,84 @@
+.item {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 75%,
+    19% 76%,
+    15% 99%,
+    10% 75%,
+    0% 75%
+  );
+}
+
+// // .slider {
+// //   display: flex;
+// //   transition: transform 0.5s ease; /* Smooth transition */
+// // }
+
+// /* Animation */
+// @keyframes slideleft {
+//   0% {
+//     left: 100%;
+//     opacity: 0;
+//   }
+//   25% {
+//     left: 0;
+//     opacity: 1;
+//   }
+//   50% {
+//     left: -100%;
+//     opacity: 0;
+//   }
+//   100% {
+//     left: 100%;
+//     opacity: 0;
+//   }
+// }
+// @keyframes slidemid {
+//   0% {
+//     left: 0;
+//     opacity: 1;
+//   }
+//   25% {
+//     left: -100%;
+//     opacity: 0;
+//   }
+//   50% {
+//     left: 100%;
+//     opacity: 0;
+//   }
+//   100% {
+//     left: 0;
+//     opacity: 1;
+//   }
+// }
+
+// @keyframes slideright {
+//   0% {
+//     left: -100%;
+//     opacity: 0;
+//   }
+//   25% {
+//     left: 100%;
+//     opacity: 0;
+//   }
+//   50% {
+//     left: 0;
+//     opacity: 1;
+//   }
+//   100% {
+//     left: -100%;
+//     opacity: 0;
+//   }
+// }
+
+// .left-img {
+//   animation: slideleft 20s infinite; /* Alternate between slides */
+// }
+// .mid-img {
+//   animation: slidemid 20s infinite; /* Alternate between slides */
+// }
+
+// .right-img {
+//   animation: slideright 20s infinite; /* Alternate between slides */
+// }

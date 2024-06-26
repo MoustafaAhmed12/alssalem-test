@@ -1,0 +1,35 @@
+<div class="px-16 py-8 m-auto">
+  <div class="flex items-center justify-center w-full">
+    <img
+      src="./../../../../../../../assets/imgs/p0.png"
+      alt="header Package"
+      class="w-full md:w-1/2"
+      loading="lazy"
+    />
+  </div>
+  <div class="">
+    <div class="grid grid-cols-1 place-items-center gap-y-2">
+      <div class="relative flex flex-col items-center justify-center">
+        <img
+          class="w-full md:w-1/3"
+          [src]="img"
+          loading="lazy"
+          alt="important package-1"
+        />
+        <h2
+          class="absolute text-3xl font-extrabold text-black md:text-4xl bottom-28 md:bottom-40"
+        >
+          بكدج {{ packageName }}
+        </h2>
+        <button class="grid place-items-center">
+          <a
+            routerLink="/login"
+            class="px-12 py-3 text-xl font-semibold text-black transition-all rounded-full bg-secondaryAdmin hover:bg-primaryAdmin w-fit hover:text-white"
+          >
+            <span> اشترك الأن </span>
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

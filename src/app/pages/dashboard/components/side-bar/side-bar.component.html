@@ -1,0 +1,321 @@
+<div
+  [ngClass]="isShow ? 'translate-x-0' : 'translate-x-full'"
+  class="fixed z-50 flex-col h-screen gap-5 p-2 overflow-y-scroll transition-all duration-500 bg-white border-l sidebar lg:translate-x-0 lg:inline-flex w-72 xl:py-4 xl:ps-4"
+>
+  <div class="w-full pt-4 justify-between items-center gap-2.5 inline-flex">
+    <a
+      class="flex items-center justify-center px-4 mx-auto bg-indigo-100 border-2 rounded-full shadow-2xl text-primaryAdmin size-28 border-secondaryAdmin"
+    >
+      <!-- <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-16"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+          clip-rule="evenodd"
+        />
+      </svg> -->
+      <img
+        src="./../../../../../assets/imgs/logo2.png"
+        alt="logo-alssalem"
+        class="size-20"
+      />
+    </a>
+    <button
+      (click)="show_menu()"
+      class="absolute w-6 h-6 bg-white left-4 top-4 lg:hidden"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 transition-all duration-500 hover:rotate-180 hover:scale-125 hover:text-red-700"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18 18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    class="flex flex-col items-center justify-center w-full my-4 gap-y-2 lg:mt-0"
+  >
+    <h2 class="text-2xl font-semibold leading-snug text-primaryAdmin">
+      {{ currentUser.firstName }} {{ currentUser.lastName }}
+    </h2>
+    <h3 class="text-xl text-textNav">{{ role }}</h3>
+  </div>
+
+  <div class="w-full pl-2 overflow-y-scroll sidebar">
+    <div class="w-full">
+      <div class="flex items-center w-full h-8 px-3">
+        <h6 class="text-base font-semibold leading-4 text-gray-500">القائمة</h6>
+      </div>
+      <ul class="flex flex-col gap-1">
+        @switch ( role) { @case ('أدمن') { @for (item of itemsAdmin; track
+        item.link) {
+        <li (click)="show_menu()" class="cursor-pointer">
+          <app-side-item
+            [lable]="item.lable"
+            [link]="item.link"
+            [icon]="item.icon"
+          />
+        </li>
+        } } @case ('مدرس') { @for (item of itemsTeacher; track item.link) {
+        <li (click)="show_menu()" class="cursor-pointer">
+          <app-side-item
+            [lable]="item.lable"
+            [link]="item.link"
+            [icon]="item.icon"
+          />
+        </li>
+        } } @case ('مدخل بيانات') { @for (item of itemsEntry; track item.link) {
+        <li (click)="show_menu()" class="cursor-pointer">
+          <app-side-item
+            [lable]="item.lable"
+            [link]="item.link"
+            [icon]="item.icon"
+          />
+        </li>
+        } } }
+      </ul>
+    </div>
+
+    <div class="w-full mt-6">
+      <div class="inline-flex items-center h-8 px-3">
+        <h6 class="text-base font-semibold leading-4 text-gray-500">إعدادات</h6>
+      </div>
+      <ul class="flex flex-col gap-1">
+        @if ( role === 'أدمن') { @for ( item of itemsSettingAdmin; track
+        item.link) {
+        <li (click)="show_menu()" class="cursor-pointer">
+          <app-side-item
+            [lable]="item.lable"
+            [link]="item.link"
+            [icon]="item.icon"
+          />
+        </li>
+        } } @if ( role === 'مدرس') { @for ( item of itemsSettingTeacher; track
+        item.link) {
+        <li (click)="show_menu()" class="cursor-pointer">
+          <app-side-item
+            [lable]="item.lable"
+            [link]="item.link"
+            [icon]="item.icon"
+          />
+        </li>
+        } }
+
+        <li>
+          <a
+            (click)="authService.logout()"
+            class="flex flex-col p-4 text-gray-500 transition-colors bg-white rounded-lg cursor-pointer group hover:bg-primaryAdmin"
+          >
+            <div class="flex items-center h-5 gap-3">
+              <div class="relative">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 transition-colors rotate-180 group-hover:text-secondaryAdmin"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+                  />
+                </svg>
+              </div>
+              <h2
+                class="text-lg font-medium leading-snug transition-colors text-inherit"
+              >
+                تسجيل الخروج
+              </h2>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Phome -->
+<div
+  [ngClass]="isShow ? 'translate-x-full z-50' : 'z-[100] '"
+  class="inline-flex flex-col lg:translate-x-full delay-200 transition-transform fixed h-screen w-[4.5rem] gap-y-5 bg-white"
+>
+  <div class="inline-flex flex-col items-center justify-center w-full pt-4">
+    <button (click)="show_menu()" class="relative w-6 h-6 bg-white">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="Menu">
+          <rect width="24" height="24" fill="white" />
+          <path
+            id="icon"
+            d="M13 6H21M3 12H21M7 18H21"
+            stroke="#1F2937"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+        </g>
+      </svg>
+    </button>
+  </div>
+
+  <div class="w-full overflow-y-scroll sidebar">
+    <div class="flex flex-col items-center justify-center w-full">
+      <ul class="flex flex-col gap-1">
+        @switch ( role) { @case ('أدمن') { @for (item of itemsAdmin; track
+        item.link) {
+        <app-sidebar-mobile
+          [icon]="item.icon"
+          [link]="item.link"
+          [lable]="item.lable"
+        />
+        } } @case ('مدرس') { @for (item of itemsTeacher; track item.link) {
+        <app-sidebar-mobile
+          [icon]="item.icon"
+          [link]="item.link"
+          [lable]="item.lable"
+        />
+        } } @case ('مدخل بيانات') { @for (item of itemsEntry; track item.link) {
+        <app-sidebar-mobile
+          [icon]="item.icon"
+          [link]="item.link"
+          [lable]="item.lable"
+        />
+        } } }
+      </ul>
+    </div>
+
+    <div class="flex flex-col items-center justify-center w-full mt-6">
+      <ul class="flex flex-col gap-1">
+        @if ( role === 'أدمن') { @for ( item of itemsSettingAdmin; track
+        item.link) {
+
+        <app-sidebar-mobile
+          [link]="item.link"
+          [icon]="item.icon"
+          [lable]="item.lable"
+        />
+
+        } } @if ( role === 'مدرس') { @for ( item of itemsSettingTeacher; track
+        item.link) {
+
+        <app-sidebar-mobile
+          [link]="item.link"
+          [icon]="item.icon"
+          [lable]="item.lable"
+        />
+
+        } }
+        <li>
+          <button
+            (click)="authService.logout()"
+            class="flex flex-col p-4 text-gray-500 transition-colors bg-white rounded-lg cursor-pointer group hover:bg-primaryAdmin"
+          >
+            <div class="flex items-center h-5 gap-3">
+              <div class="relative">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 transition-colors rotate-180 group-hover:text-secondaryAdmin"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+                  />
+                </svg>
+              </div>
+            </div>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--
+    <li (click)="menu_button()" class="">
+        <a
+          routerLink="/admin/school"
+          routerLinkActive="activeLink"
+          ariaCurrentWhenActive="page"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex justify-between p-4 text-gray-500 transition-colors bg-white rounded-lg group hover:bg-primaryAdmin"
+          (click)="show_menu()"
+        >
+          <div class="flex h-5 gap-3">
+            <div class="relative">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 transition-colors group-hover:text-secondaryAdmin"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
+                />
+              </svg>
+            </div>
+            <h2
+              class="text-lg font-medium leading-snug transition-colors text-inherit "
+            >
+              المدرسة
+            </h2>
+          </div>
+          <div>
+            <svg
+              [ngClass]="menu_show ? 'rotate-180 transition-transform' : ''"
+              class="transition-transform size-5"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </div>
+        </a>
+        <ul
+          [ngClass]="{ 'h-fit py-4': menu_show }"
+          class="flex flex-col w-full h-0 space-y-2 overflow-hidden transition-all duration-500 bg-gray-100"
+        >
+          <li
+            class="py-2 transition-all cursor-pointer text-textNav hover:text-secondaryAdmin"
+          >
+            <a routerLink="/qodrat" class="block px-6 text-lg">
+              <span>أضيف مدرسة جديدة</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+-->

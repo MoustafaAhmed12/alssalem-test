@@ -1,0 +1,74 @@
+<div class="relative py-16 m-auto">
+  <div
+    class="absolute"
+    [ngClass]="{
+      '!bg-opacity-100 bg-white z-30 mt-12 w-full h-full': isLoading()
+    }"
+  ></div>
+  <div class="relative w-full mt-9">
+    <div class="w-full h-[32rem]">
+      @if (parentCategoryName === 'تحصيلي' ) {
+      <img
+        src="./../../../../../../assets/imgs/تحصيلى/تحصيلى -02.png"
+        class="w-full h-full"
+        loading="lazy"
+        alt="تحصيلي"
+      />
+      } @if (parentCategoryName === 'قدرات' ) {
+      <img
+        src="./../../../../../../assets/imgs/قدرات/قدرات  - Copy-01.png"
+        class="w-full h-full"
+        alt="قدرات"
+      />
+      } @if (parentCategoryName === 'موهبة' ) {
+      <img
+        src="./../../../../../../assets/imgs/موهبة/موهبة -02.png"
+        class="w-full h-full"
+        alt="موهبة"
+      />
+      } @if (parentCategoryName === 'قدارت باللغه الانجليزية' ) {
+      <img
+        src="./../../../../../../assets/imgs/قدرات انجليزى/قدرات انجليزى -02.png"
+        class="w-full h-full"
+        alt="قدارت باللغه الانجليزية"
+      />
+      }
+    </div>
+  </div>
+  <div
+    [ngClass]="
+      subCategories.length === 4
+        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'
+        : 'flex justify-center flex-col md:flex-row items-center gap-x-16'
+    "
+    class="px-12 mt-8 place-items-center"
+  >
+    @for (subCateogry of subCategories; track subCateogry.id; let odd = $odd) {
+    <app-cart [subCateogry]="subCateogry" [odd]="odd" />
+    }
+  </div>
+  @if (parentCategoryName === 'تحصيلي') {
+
+  <app-one-package
+    [packageName]="parentCategoryName"
+    [img]="'./../../../../../../assets/imgs/p2.png'"
+  />
+  } @if (parentCategoryName === 'قدرات') {
+
+  <app-one-package
+    [packageName]="parentCategoryName"
+    [img]="'./../../../../../../assets/imgs/p1.png'"
+  />
+  } @if(isLoading()) {
+  <div
+    class="fixed z-50 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 bg-opacity-60"
+  >
+    <div class="relative flex items-center justify-center">
+      <div
+        class="absolute border-t-4 border-b-4 rounded-full border-secondaryAdmin w-36 h-36 animate-spin"
+      ></div>
+      <img [src]="logo" class="rounded-full h-28 w-28" />
+    </div>
+  </div>
+  }
+</div>

@@ -1,0 +1,180 @@
+<div class="relative grid h-screen place-items-center bGround">
+  <div class="items-center justify-center w-full md:flex">
+    <div class="hidden w-5/6 pt-20 md:block pr-28">
+      <div class="self-end w-full">
+        <img
+          src="./../../../../assets/imgs/login2.png"
+          class="w-full"
+          alt="login2"
+        />
+      </div>
+    </div>
+    <main class="flex items-center justify-center w-full px-4 mx-auto sm:px-6">
+      <div class="w-10/12 bg-white shadow-md lg:w-7/12 md:w-8/12 rounded-xl">
+        <div class="relative text-center text-white h-[17rem]">
+          <img
+            src="./../../../../assets/imgs/login1.png"
+            alt="login1"
+            loading="lazy"
+            class="w-full h-full"
+          />
+          <div
+            class="absolute flex flex-col items-center justify-center w-full -translate-x-1/2 -translate-y-1/2 gap-y-8 top-1/2 left-1/2"
+          >
+            <h2 class="text-2xl font-bold md:text-3xl">تسجيل الدخول</h2>
+
+            <a
+              routerLink="/"
+              class="grid bg-white rounded-full w-28 place-items-center"
+            >
+              <img [src]="logo" class="w-11/12 p-2" alt="logo" />
+            </a>
+          </div>
+        </div>
+        <form
+          [formGroup]="loginForm"
+          class="flex flex-col items-center justify-center px-8"
+          (ngSubmit)="onLogin()"
+        >
+          <div class="w-11/12 mt-2">
+            <div class="relative">
+              <input
+                required
+                name="email_phone"
+                formControlName="email_phone"
+                placeholder=" البريد الإلكتروني أو رقم الجوال"
+                matInput
+                [ngClass]="
+                  loginForm.controls['email_phone'].errors && submitted
+                    ? 'border-red-400 placeholder:text-red-500'
+                    : 'border-gray-300 focus:border-primaryAdmin'
+                "
+                class="relative block w-full py-3 pr-6 my-2 text-black placeholder-black border-2 rounded-full appearance-none pl-14 placeholder:text-right bg-[#b7e4c7] focus:outline-none focus:ring-primaryAdmin"
+              />
+              <div class="absolute p-1.5 bg-white rounded-full top-2 left-3">
+                <fa-icon [icon]="userIcon" class="text-primaryAdmin"></fa-icon>
+              </div>
+            </div>
+
+            @if (submitted && loginForm.controls['email_phone'].errors) {
+            <div>
+              @if (loginForm.controls['email_phone'].errors['required'] ) {
+              <p class="text-xs text-red-500 ps-3">هذا الحقل مطلوب</p>
+              } @if
+              (loginForm.controls['email_phone'].hasError('invalidEmailOrPhoneNumber'))
+              {
+              <p class="text-xs text-red-500 ps-3">
+                أدخل بريدًا إلكترونيًّاأو رقم الجوال صحيحا
+              </p>
+              }
+            </div>
+            }
+          </div>
+          <div class="w-11/12">
+            <div class="relative">
+              <input
+                autocomplete="new-password"
+                name="password"
+                formControlName="password"
+                [type]="passwordFieldType"
+                placeholder="كلمة المرور"
+                [ngClass]="
+                  loginForm.controls['password'].errors && submitted
+                    ? 'border-red-400 placeholder:text-red-500'
+                    : 'border-gray-300 focus:border-primaryAdmin'
+                "
+                class="relative block w-full py-3 pr-6 my-2 text-black placeholder-black border-2 rounded-full appearance-none pl-14 placeholder:text-right bg-[#b7e4c7] focus:outline-none focus:ring-primaryAdmin"
+              />
+              <button
+                type="button"
+                class="absolute p-1.5 bg-white rounded-full top-2 left-3"
+                (click)="togglePasswordVisibility()"
+              >
+                @if (passwordFieldType === 'password' ) {
+
+                <fa-icon [icon]="eyeIcon" class="text-primaryAdmin"></fa-icon>
+                }@else {
+                <fa-icon
+                  [icon]="eyeSlashIcon"
+                  class="text-primaryAdmin"
+                ></fa-icon>
+
+                }
+              </button>
+            </div>
+
+            @if (submitted && loginForm.controls['password'].errors) {
+            <div>
+              @if (loginForm.controls['password'].errors['required'] ) {
+              <p class="text-xs text-red-500 ps-3">هذا الحقل مطلوب</p>
+              } @if (loginForm.controls['password'].errors['minlength']) {
+              <p class="text-xs text-red-500 ps-3">
+                لابد أن لا تقل كلمة المرور عن 6 أحرف
+              </p>
+              }
+            </div>
+            }
+          </div>
+          <div
+            class="flex items-center justify-between w-11/12 px-4 mt-2 text-sm"
+          >
+            <label for="remember">
+              <input type="checkbox" name="remember" id="remember" /> البقاء
+              مسجلا
+            </label>
+            <a href="/" class="transition-colors hover:text-secondaryAdmin">
+              هل نسيت كلمة السر؟
+            </a>
+          </div>
+
+          <button
+            type="submit"
+            [ngClass]="[mainColorBg, secondaryColorBgHover]"
+            class="flex justify-center w-3/5 py-3 mt-4 text-lg font-semibold text-white transition-colors rounded-full focus:outline-none"
+          >
+            @if (isLoading) {
+            <img
+              class="w-8 h-8 animate-spin text-purple-950"
+              src="https://www.svgrepo.com/show/474682/loading.svg"
+              alt="Loading icon"
+            />
+            } @else { دخول }
+          </button>
+          <button
+            type="button"
+            class="flex items-center justify-center w-4/5 py-1 mt-2 text-lg font-semibold text-black transition-colors border rounded-full hover:text-primaryAdmin border-primaryAdmin focus:outline-none"
+          >
+            <span> التسجيل بحساب جوجل </span>
+            <div class="w-10">
+              <img
+                src="./../../../../assets/imgs/google.png"
+                class="w-full"
+                alt="google"
+              />
+            </div>
+          </button>
+        </form>
+
+        <p
+          class="flex items-center justify-center my-4 text-sm text-secondaryAdmin"
+        >
+          ليس لديك حساب؟
+          <a
+            routerLink="/register"
+            class="px-2 font-semibold cursor-pointe text-primaryAdmin"
+          >
+            قم بالتسجيل الآن
+          </a>
+        </p>
+        <p class="flex items-center justify-center mb-4">
+          <a
+            routerLink="/parent-register"
+            class="px-2 font-semibold cursor-pointe hover:text-secondaryAdmin text-primaryAdmin"
+          >
+            قم بالتسجيل كـ ولي أمر
+          </a>
+        </p>
+      </div>
+    </main>
+  </div>
+</div>

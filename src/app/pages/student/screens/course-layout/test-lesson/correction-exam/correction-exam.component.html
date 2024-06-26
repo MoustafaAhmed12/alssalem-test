@@ -1,0 +1,348 @@
+<main class="grid grid-cols-1 mt-2 md:grid-cols-2 gap-y-6 md:gap-x-16">
+  <div class="relative grid col-span-1 place-items-center">
+    <canvas id="chart" width="429" height="429" class="!w-[430px] !h-[430px]">
+    </canvas>
+    @if (correctionExamDetails) {
+
+    <div class="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+      @if ( correctionExamDetails?.length > 1) {
+      <h2
+        [ngClass]="
+          correctionExamDetails[correctionExamDetails?.length - 1].isSuccess
+            ? 'text-[#36b290]'
+            : 'text-[#963c3d]'
+        "
+        class="pt-8 text-6xl"
+      >
+        {{
+          correctionExamDetails[correctionExamDetails?.length - 1].percentage
+            | number : ".0-1"
+        }}%
+      </h2>
+      }@else {
+      <h2
+        [ngClass]="
+          correctionExamDetails[0].isSuccess
+            ? 'text-[#36b290]'
+            : 'text-[#963c3d]'
+        "
+        class="pt-8 text-6xl"
+      >
+        {{ correctionExamDetails[0].percentage | number : ".0-1" }}%
+      </h2>
+      }
+    </div>
+    }
+  </div>
+  @if (correctionExamDetails) {
+
+  <div class="col-span-1">
+    <section class="bg-white">
+      <div class="container mx-auto">
+        <div class="flex flex-wrap -mx-4">
+          <div class="w-full px-4">
+            <div class="max-w-full overflow-x-auto rounded-xl">
+              @if ( correctionExamDetails?.length === 1 ) {
+              <table class="w-full table-auto">
+                <thead>
+                  <tr class="text-center bg-secondaryAdmin">
+                    <th
+                      colspan="2"
+                      class="w-1/6 min-w-[160px] py-2 px-3 text-lg font-bold text-black lg:py-4 lg:px-4"
+                    >
+                      إحصائيات الإختبار
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      الوقت المستغرق
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{ correctionExamDetails[0].takenTime }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      عدد الأسئلة
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{
+                        correctionExamDetails[0].numberOfTotalQuestionsQuestions
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      النتيجة
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{ correctionExamDetails[0].numberOfCorrectQuestions }}
+                      /
+                      {{
+                        correctionExamDetails[0].numberOfTotalQuestionsQuestions
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      الإجابات الصحيحة
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{ correctionExamDetails[0].numberOfCorrectQuestions }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      الأخطاء
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{ correctionExamDetails[0].numberOfWrongQuestions }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      لم يتم حلها
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{ correctionExamDetails[0].numberOfEmptyQuestions }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              }@else {
+              <table class="w-full table-auto">
+                <thead>
+                  <tr class="text-center bg-secondaryAdmin">
+                    <th
+                      colspan="2"
+                      class="w-1/6 min-w-[160px] py-2 px-3 text-lg font-bold text-black lg:py-4 lg:px-4"
+                    >
+                      إحصائيات الإختبار
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      الوقت المستغرق
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{
+                        correctionExamDetails[correctionExamDetails.length - 1]
+                          .takenTime
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      عدد الأسئلة
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{
+                        correctionExamDetails[correctionExamDetails.length - 1]
+                          .numberOfTotalQuestionsQuestions
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      النتيجة
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{
+                        correctionExamDetails[correctionExamDetails.length - 1]
+                          .numberOfCorrectQuestions
+                      }}
+                      /
+                      {{
+                        correctionExamDetails[correctionExamDetails.length - 1]
+                          .numberOfTotalQuestionsQuestions
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      الإجابات الصحيحة
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{
+                        correctionExamDetails[correctionExamDetails.length - 1]
+                          .numberOfCorrectQuestions
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      الأخطاء
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{
+                        correctionExamDetails[correctionExamDetails.length - 1]
+                          .numberOfWrongQuestions
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                    >
+                      لم يتم حلها
+                    </td>
+                    <td
+                      class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                    >
+                      {{
+                        correctionExamDetails[correctionExamDetails.length - 1]
+                          .numberOfEmptyQuestions
+                      }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Table Section End -->
+  </div>
+  }
+</main>
+@if (correctionExamDetails) {
+
+<section class="bg-white mt-14">
+  <h2 class="my-3 text-xl font-semibold">نتائج المحاولات</h2>
+  <div class="container mx-auto">
+    <div class="flex flex-wrap -mx-4">
+      <div class="w-full px-4">
+        <div class="max-w-full overflow-x-auto rounded-xl">
+          <table class="w-full table-auto">
+            <thead>
+              <tr class="text-center bg-secondaryAdmin">
+                <td
+                  class="px-2 py-5 text-base font-bold text-center border-b-2 border-l-2 border-gray-500"
+                >
+                  الوقت المستغرق
+                </td>
+                <td
+                  class="px-2 py-5 text-base font-bold text-center border-b-2 border-l-2 border-gray-500"
+                >
+                  عدد الأسئلة
+                </td>
+                <!-- <td
+                  class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold"
+                >
+                  النتيجة
+                </td> -->
+                <td
+                  class="px-2 py-5 text-base font-bold text-center border-b-2 border-l-2 border-gray-500"
+                >
+                  الإجابات الصحيحة
+                </td>
+                <td
+                  class="px-2 py-5 text-base font-bold text-center border-b-2 border-l-2 border-gray-500"
+                >
+                  الأخطاء
+                </td>
+                <td
+                  class="px-2 py-5 text-base font-bold text-center border-b-2 border-gray-500"
+                >
+                  لم يتم حلها
+                </td>
+              </tr>
+            </thead>
+            @for (item of correctionExamDetails; track $index) {
+            <tbody>
+              <tr>
+                <td
+                  class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                >
+                  {{ item.takenTime }}
+                </td>
+
+                <td
+                  class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                >
+                  {{ item.numberOfTotalQuestionsQuestions }}
+                </td>
+
+                <!-- <td
+                  class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                >
+                  1/66
+                </td> -->
+
+                <td
+                  class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                >
+                  {{ item.numberOfCorrectQuestions }}
+                </td>
+
+                <td
+                  class="border-b-2 border-l-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                >
+                  {{ item.numberOfWrongQuestions }}
+                </td>
+
+                <td
+                  class="border-b-2 border-gray-500 bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium"
+                >
+                  {{ item.numberOfEmptyQuestions }}
+                </td>
+              </tr>
+            </tbody>
+            }
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}

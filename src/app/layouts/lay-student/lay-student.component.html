@@ -1,0 +1,12 @@
+<header>
+  @if (showNavbar) {
+  <app-navbar />
+  }
+</header>
+<!-- class="mt-[116px]" -->
+<main>
+  <router-outlet />
+</main>
+@if (showNavbar) {
+<app-footer />
+}

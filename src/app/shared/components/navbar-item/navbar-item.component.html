@@ -1,0 +1,67 @@
+<li
+  (mouseenter)="menu_button()"
+  (mouseleave)="menu_button_close()"
+  [ngClass]="[mainColorBgHover, secondaryColorBorder]"
+  class="relative block text-base font-semibold transition-colors rounded-tl-lg rounded-tr-lg cursor-pointer h-fit hover:text-white"
+>
+  @if (!category.children?.length) {
+  <a
+    [routerLink]="['/cateogry-tutorials/', category.id]"
+    [ngClass]="[secondaryColorBorder]"
+    class="flex items-center p-2 transition-all rounded-tl-lg rounded-tr-lg gap-x-1"
+  >
+    <span>{{ category.name }}</span>
+  </a>
+  } @if (category.children?.length) {
+  <a
+    [routerLink]="['/sub-cateogry/', category.id]"
+    [ngClass]="[secondaryColorBorder]"
+    class="flex items-center p-2 transition-all rounded-tl-lg rounded-tr-lg gap-x-1"
+  >
+    <span>{{ category.name }}</span>
+
+    <svg
+      [ngClass]="menu_show ? 'rotate-180' : ''"
+      class="transition-transform size-6"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  </a>
+  } @if (category.children?.length) {
+
+  <ul
+    [ngClass]="
+      menu_show
+        ? ['h-fit py-4 border-t-2', mainColorBg, secondaryColorBorder]
+        : [mainColorBg]
+    "
+    class="absolute right-0 z-[100] flex flex-col items-center justify-center w-56 h-0 overflow-hidden text-base text-white transition-all duration-500 rounded-bl-lg rounded-br-lg shadow-lg top-10"
+  >
+    @for (dropItem of category.children;track $index) {
+    <li
+      class="px-2 py-2 transition-all cursor-pointer text-slate-50 hover:text-slate-100"
+    >
+      <a
+        [routerLink]="['/cateogry-tutorials/', dropItem.id]"
+        class="flex items-center px-2 transition-all group gap-x-2"
+      >
+        <span
+          [ngClass]="[secondaryColorBg]"
+          class="w-0 h-0 rounded-lg hover:transition-all group-hover:w-8 group-hover:h-1"
+        ></span>
+        <span>{{ dropItem.name }}</span>
+      </a>
+    </li>
+    }
+  </ul>
+  }
+</li>

@@ -1,0 +1,86 @@
+<div class="h-screen">
+  <div class="h-[75px] md:pr-[26rem] fixed inset-y-0 w-full z-40">
+    <button
+      (click)="show_menu()"
+      [ngClass]="
+        isShow ? 'absolute top-8 right-[26rem]' : 'absolute top-8 right-6'
+      "
+      class="transition-all duration-500"
+    >
+      @if (isShow ) {
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-7 lg:hidden"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18 18 6M6 6l12 12"
+        />
+      </svg>
+
+      }@else {
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-7"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+        />
+      </svg>
+      }
+    </button>
+    <app-nav-bar-course />
+  </div>
+  <div class="relative">
+    <div
+      class="absolute"
+      [ngClass]="{
+        '!bg-opacity-100 bg-white z-[150] w-full h-screen': isLoading()
+      }"
+    ></div>
+    <div
+      [ngClass]="isShow ? ' translate-x-0' : ' translate-x-full'"
+      class="fixed inset-y-0 z-[100] lg:translate-x-0 flex-col transition-all duration-500 bg-white h-screen md:flex w-[26rem]"
+    >
+      <div class="flex flex-col overflow-y-auto border-l shadow-sm h-svh">
+        <div class="flex flex-col p-8 border-b">
+          <h1 class="text-2xl font-bold text-center text-logoColor1">
+            دورة {{ tutorialName }}
+          </h1>
+        </div>
+        <div class="flex flex-col w-full">
+          @for (unit of allUnit; track $index) {
+          <app-content-of-course [unit]="unit" />
+          }
+          <app-exams-course [exams]="ExamsTutorial" />
+        </div>
+      </div>
+    </div>
+  </div>
+  @if(isLoading()) {
+  <div
+    class="fixed z-[200] top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 bg-opacity-60"
+  >
+    <div class="relative flex items-center justify-center">
+      <div
+        class="absolute border-t-4 border-b-4 rounded-full border-secondaryAdmin w-36 h-36 animate-spin"
+      ></div>
+      <img [src]="logo" class="rounded-full h-28 w-28" />
+    </div>
+  </div>
+  }
+  <main class="h-full pt-[80px] lg:pr-[26rem] transition-all">
+    <router-outlet />
+  </main>
+</div>
