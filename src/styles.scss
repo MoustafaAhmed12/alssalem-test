@@ -74,6 +74,10 @@ body {
   z-index: 1;
 }
 
+.ngx-pagination-wrapper {
+  direction: ltr;
+}
+
 .ngx-dropdown {
   float: initial;
   margin-right: 14px;
