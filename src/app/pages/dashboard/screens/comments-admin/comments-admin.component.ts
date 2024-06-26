@@ -154,7 +154,6 @@ export class CommentsAdminComponent implements OnInit {
       .subscribe({
         next: ({ statusCode, msg }) => {
           if (statusCode === 200) {
-            debugger;
             this.isLoading.update((v) => (v = false));
             this.apiCacheService.clearCache();
             this.fetchComments();

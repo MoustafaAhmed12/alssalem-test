@@ -241,7 +241,6 @@ export class TestLessonComponent implements OnInit {
   }
 
   onComplete() {
-    debugger;
     this.toastr.info('تم إنتهاء الوقت المحدد');
     this.selectedTab = 2;
     this.cdr.detectChanges();

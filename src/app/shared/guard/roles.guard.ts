@@ -11,7 +11,6 @@ export const rolesGuard: CanActivateFn = (route, state) => {
   const { routeConfig } = route;
 
   /// اللي رايحله
-  // debugger;
   const { path } = routeConfig as Route;
   if (path === 'admin' && roleDto.roleName === 'أدمن') {
     return true;

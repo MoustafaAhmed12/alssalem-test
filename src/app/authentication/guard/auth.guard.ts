@@ -19,7 +19,6 @@ export const authGuardLoggdIn: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
 
   const router = inject(Router);
-  debugger;
   if (authService.isAuth() && currentUser.roleDto.roleName === 'أدمن') {
     return router.navigate(['/admin']);
   }

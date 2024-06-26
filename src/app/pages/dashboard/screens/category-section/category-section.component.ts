@@ -245,7 +245,6 @@ export class CategorySectionComponent implements OnInit {
 
     this.categoryService.saveCategory(this.formData.value).subscribe({
       next: ({ msg, statusCode }) => {
-        debugger;
         if (statusCode === 200) {
           this.toastr.success(msg);
           this.apiCacheService.clearCache();
