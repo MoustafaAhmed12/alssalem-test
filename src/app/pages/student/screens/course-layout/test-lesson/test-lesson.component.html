@@ -6,7 +6,7 @@
   @if (selectedTab === 1 ) {
   <!-- header -->
   <div
-    class="flex items-center justify-between w-full px-8 py-2 mx-auto mt-2 border rounded-lg bg-secondaryAdmin md:w-11/12"
+    class="flex items-center justify-between w-full px-2 py-2 mt-2 border rounded-lg lg:px-8 bg-secondaryAdmin lg:w-11/12"
   >
     <p class="text-lg">
       السؤال
@@ -27,14 +27,14 @@
 
     <button
       (click)="selectTab(2)"
-      class="px-12 py-2 text-black transition-colors bg-white border-2 rounded-lg hover:bg-red-700 hover:text-white"
+      class="px-4 py-2 text-black transition-colors bg-white border-2 rounded-lg md:px-12 hover:bg-red-700 hover:text-white"
     >
       إنهاء الإختبار
     </button>
   </div>
 
   <form [formGroup]="correctionForm" (ngSubmit)="onSubmit()">
-    <div class="px-8 py-6 bg-white rounded-lg">
+    <div class="px-2 py-6 bg-white rounded-lg lg:px-8">
       <div>
         <input type="text" name="id" id="id" formControlName="id" hidden />
 
@@ -74,7 +74,7 @@
               class="flex flex-col items-center justify-center w-full mt-4"
               *ngIf="i === currentPage"
             >
-              <div class="w-full h-64 px-8 md:w-2/3">
+              <div class="w-full h-64 px-1 lg:px-8 md:w-2/3">
                 <img
                   [src]="question.get('questionImage')?.value"
                   class="w-full h-full"
@@ -99,7 +99,7 @@
               />
 
               <div
-                class="flex items-center justify-between w-full px-8 font-bold mt-14 md:w-2/3 gap-x-6"
+                class="flex items-center justify-between w-full pl-4 font-bold lg:px-8 mt-14 md:w-2/3 gap-x-6"
                 formArrayName="answers"
               >
                 <div
@@ -150,7 +150,7 @@
               </div>
               <!-- This is an example component -->
               <div
-                class="flex items-center justify-between w-full px-8 mt-8 md:w-2/3"
+                class="flex items-center justify-between w-full px-2 mt-8 lg:px-8 md:w-2/3"
               >
                 <button
                   (click)="prevQuestion()"
@@ -197,7 +197,7 @@
                   </div>
                 </button>
               </div>
-              <div class="flex items-center justify-center gap-x-4">
+              <div class="flex items-center justify-center mt-4 gap-x-4">
                 <button
                   *ngFor="let pageNum of getPageRange()"
                   class="px-3 py-2 border rounded-md"
@@ -219,8 +219,10 @@
   } @if(selectedTab === 0) {
   <div class="w-full pt-32">
     <div class="flex flex-col items-center justify-center gap-y-8">
-      <h2 class="text-2xl font-semibold">
-        <span class="text-3xl text-logoColor1">{{ examDetails?.name }}</span>
+      <h2 class="font-semibold text-center">
+        <span class="text-3xl leading-loose text-logoColor1">{{
+          examDetails?.name
+        }}</span>
       </h2>
       <div class="flex items-center justify-center gap-x-6">
         <div class="flex items-center justify-center text-lg">
@@ -279,9 +281,9 @@
     </div>
   </div>
   } @if(selectedTab === 2) { @if (correctionLoading() === false) {
-  <div class="w-full pt-6">
-    <div class="flex flex-col items-center justify-center gap-y-8">
-      <h2 class="text-3xl font-semibold">
+  <div class="grid w-full pt-6 place-items-center">
+    <div class="text-center gap-y-8">
+      <h2 class="text-3xl font-semibold leading-loose">
         تم الانتهاء من : {{ examDetails?.name }}
       </h2>
       <app-correction-exam [correctionExamDetails]="correctionExamDetails" />

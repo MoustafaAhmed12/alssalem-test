@@ -1,6 +1,6 @@
 <section
   [ngClass]="isLoading() === true ? 'h-screen w-full' : ''"
-  class="flex flex-col pt-[100px] gap-y-12"
+  class="flex flex-col md:pt-[100px] pt-[108px] gap-y-12"
 >
   @if(isLoading() === true) {
   <div
@@ -27,7 +27,7 @@
         class="flex items-center w-full lg:justify-between justify-evenly lg:w-1/2"
       >
         <!-- teacherName -->
-        <div class="flex items-center self-start my-6 cursor-pointer gap-x-4">
+        <div class="flex items-center self-start my-6 cursor-pointer gap-x-2">
           <img
             src="https://alssalem.com/wp-content/uploads/nsl_avatars/11e12aa2f58df508399002b0625ccd2f-96x96.png"
             alt=""
@@ -44,7 +44,7 @@
         </div>
         <!-- category -->
         <div
-          class="flex items-center self-start my-6 cursor-pointer ms-8 gap-x-4"
+          class="flex items-center self-start my-6 cursor-pointer ms-4 gap-x-2"
         >
           <div class="self-start">
             <svg
@@ -365,7 +365,7 @@
               <p class="text-lg line-through text-textNav">
                 {{ tutorialDetails.priceBeforeDiscount | currency : " " }} ر.س
               </p>
-              <p class="text-3xl text-orange-400">
+              <p class="text-2xl text-orange-400">
                 {{ tutorialDetails.price | currency : " " }} ر.س
               </p>
             </div>

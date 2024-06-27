@@ -102,29 +102,27 @@
                 <div class="relative bg-inherit">
                   <input
                     type="number"
-                    id="successPercentage"
-                    name="successPercentage"
-                    formControlName="successPercentage"
+                    id="passingPrecent"
+                    name="passingPrecent"
+                    formControlName="passingPrecent"
                     placeholder="ادخل نسبة النجاح"
                     [ngClass]="
-                      examForm.controls['successPercentage'].errors && submitted
+                      examForm.controls['passingPrecent'].errors && submitted
                         ? 'ring-rose-600 '
                         : 'border-gray-300 focus:ring-sky-600'
                     "
                     class="w-full px-4 py-4 my-2 text-lg text-gray-900 placeholder-transparent bg-transparent rounded-lg peer ring-1 ring-gray-500 focus:ring-sky-600 focus:outline-none"
                   />
                   <label
-                    for="successPercentage"
+                    for="passingPrecent"
                     class="absolute right-0 px-1 mx-1 text-lg text-gray-500 transition-all cursor-text -top-3 bg-inherit peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-6 peer-focus:-top-1 peer-focus:text-sky-600 peer-focus:text-sm"
                   >
                     ادخل نسبة النجاح</label
                   >
                 </div>
-                @if (submitted && examForm.controls['successPercentage'].errors)
-                {
+                @if (submitted && examForm.controls['passingPrecent'].errors) {
                 <div>
-                  @if(examForm.controls['successPercentage'].errors['required']
-                  ) {
+                  @if(examForm.controls['passingPrecent'].errors['required'] ) {
                   <p class="text-sm text-red-500">هذا الحقل مطلوب</p>
 
                   }

@@ -11,7 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CourseCardComponent implements OnInit {
   @Input() tutorial!: any;
-  @Input() odd: boolean = false;
   cateogryId: number | null = 0;
 
   router = inject(Router);

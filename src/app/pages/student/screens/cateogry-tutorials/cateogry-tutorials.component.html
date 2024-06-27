@@ -1,5 +1,5 @@
 <div class="py-16 m-auto">
-  <div class="relative mt-9">
+  <div class="relative md:mt-9 mt-11">
     <div
       class="absolute"
       [ngClass]="{
@@ -14,18 +14,14 @@
       />
     </div>
     <div
-      class="absolute flex items-center w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 md:justify-evenly"
+      class="absolute items-center hidden w-full -translate-x-1/2 -translate-y-1/2 lg:flex top-1/2 left-1/2 justify-evenly"
     >
       @if (subCategoryName) { @switch (subCategoryName) { @case ('قدرات كمي') {
-      <h2
-        class="text-5xl font-bold leading-loose text-center md:text-right text-primaryAdmin"
-      >
-        دورات القدرات الكمي
-      </h2>
-      <div class="hidden md:basis-2/6">
+      <h2 class="text-6xl font-bold text-primaryAdmin">دورات القدرات الكمي</h2>
+      <div class="w-2/6">
         <img
           src="./../../../../../assets/imgs/كمي.png"
-          class="w-full h-full"
+          class="w-full"
           alt="دورات القدرات الكمي"
         />
       </div>
@@ -139,7 +135,116 @@
         />
       </div>
       } } }@else {
-      <section class="flex flex-col flex-wrap pt-12 mt-20">
+      <section class="flex flex-col flex-wrap">
+        <div class="flex flex-row flex-wrap justify-center">
+          <div class="flex justify-center w-64 h-24 m-2 text-center">
+            <div class="z-10 flex-shrink-0 w-24 h-24">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3858/3858671.png"
+                width="256"
+                height="256"
+                alt="Coming soon free icon"
+                title="Coming soon free icon"
+              />
+            </div>
+            <div
+              class="flex flex-col self-center py-2 pl-16 pr-4 -ml-12 text-left text-white bg-blue-500 rounded-l-full w-fit"
+            >
+              <h3 class="text-xl">انتظرونا قريبا</h3>
+              <!-- <p class="w-64 overflow-x-auto overflow-y-hidden text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> -->
+            </div>
+          </div>
+        </div>
+      </section>
+      }
+    </div>
+    <div
+      class="absolute flex items-center justify-center w-full -translate-x-1/2 -translate-y-1/2 lg:hidden top-1/2 left-1/2"
+    >
+      @if (subCategoryName) { @switch (subCategoryName) { @case ('قدرات كمي') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات القدرات الكمي
+      </h2>
+
+      } @case ('قدرات لفظي') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات القدرات اللفظي
+      </h2>
+
+      } @case ('تحصيلي رياضيات') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات التحصيلي رياضيات
+      </h2>
+      } @case ('تحصيلي فيزياء') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات التحصيلي فيزياء
+      </h2>
+
+      } @case ('تحصيلي كيمياء') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات التحصيلي كيمياء
+      </h2>
+
+      } @case ('تحصيلي أحياء') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات التحصيلي أحياء
+      </h2>
+
+      } @case ('كنجارو') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات كنجارو
+      </h2>
+
+      } @case ('موهوب') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات الموهوب
+      </h2>
+
+      } @case ('البرنامج الوطني للكشف عن الموهوبين') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات البرنامج الوطني
+      </h2>
+
+      } @case ('أولمبياد الرياضيات') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات أولمبياد الرياضيات
+      </h2>
+
+      } @case ('Verbal') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات Verbal
+      </h2>
+
+      } @case ('Quantitative') {
+      <h2
+        class="text-5xl font-bold leading-loose text-center text-primaryAdmin"
+      >
+        دورات Quantitative
+      </h2>
+      } } }@else {
+      <section class="flex flex-col flex-wrap">
         <div class="flex flex-row flex-wrap justify-center">
           <div class="flex justify-center w-64 h-24 m-2 text-center">
             <div class="z-10 flex-shrink-0 w-24 h-24">
@@ -163,10 +268,12 @@
       }
     </div>
   </div>
-  <div class="grid grid-cols-1 gap-8 px-16 mt-8 md:grid-cols-2 lg:grid-cols-3">
-    @for (tutorial of categoryTutorials; track tutorial.id; let odd = $odd) {
+  <div
+    class="grid grid-cols-1 gap-8 px-4 mt-8 md:px-16 md:grid-cols-2 lg:grid-cols-3"
+  >
+    @for (tutorial of categoryTutorials; track tutorial.id) {
 
-    <app-course-card [tutorial]="tutorial" [odd]="odd" />
+    <app-course-card [tutorial]="tutorial" />
     }
   </div>
 

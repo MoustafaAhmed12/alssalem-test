@@ -45,9 +45,9 @@
     </div>
 
     <div class="flex flex-col self-start w-full px-2 my-6 text-right gap-y-4">
-      <div class="flex items-center justify-between">
+      <div class="flex flex-col md:flex-row gap-y-2 md:justify-between">
         <div class="flex text-base gap-x-2">
-          <p class="line-through text-textNav">
+          <p class="text-lg line-through text-textNav">
             {{ tutorial.priceBeforeDiscount | currency : " " }} ر.س
           </p>
           <p class="text-orange-400">
@@ -59,7 +59,7 @@
         </h3>
       </div>
       <div>
-        <h2 class="text-3xl font-semibold text-primaryAdmin">
+        <h2 class="text-3xl font-semibold text-center text-primaryAdmin">
           {{ tutorial.name }}
         </h2>
       </div>
@@ -122,7 +122,7 @@
       </div>
       <button class="grid place-items-center">
         <a
-          class="px-8 py-3 font-semibold text-black transition-all bg-orange-400 border rounded-full w-fit hover:text-white hover:animate-pop"
+          class="px-3 py-3 font-semibold text-black transition-all bg-orange-400 border rounded-full md:px-8 w-fit hover:text-white hover:animate-pop"
         >
           <span> اشترك الأن </span>
         </a>

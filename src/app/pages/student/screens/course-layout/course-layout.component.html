@@ -1,9 +1,11 @@
 <div class="h-screen">
-  <div class="h-[75px] md:pr-[26rem] fixed inset-y-0 w-full z-40">
+  <div class="h-[75px] xl:pr-[26rem] fixed inset-y-0 w-full z-40">
     <button
       (click)="show_menu()"
       [ngClass]="
-        isShow ? 'absolute top-8 right-[26rem]' : 'absolute top-8 right-6'
+        isShow
+          ? 'absolute top-8 xl:right-[26rem] right-80'
+          : 'absolute top-8 right-6'
       "
       class="transition-all duration-500"
     >
@@ -14,7 +16,7 @@
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="size-7 lg:hidden"
+        class="size-7 xl:hidden"
       >
         <path
           stroke-linecap="round"
@@ -51,7 +53,7 @@
     ></div>
     <div
       [ngClass]="isShow ? ' translate-x-0' : ' translate-x-full'"
-      class="fixed inset-y-0 z-[100] lg:translate-x-0 flex-col transition-all duration-500 bg-white h-screen md:flex w-[26rem]"
+      class="fixed inset-y-0 z-[100] xl:translate-x-0 flex-col transition-all duration-500 bg-white h-screen xl:flex xl:w-[26rem] w-80"
     >
       <div class="flex flex-col overflow-y-auto border-l shadow-sm h-svh">
         <div class="flex flex-col p-8 border-b">
@@ -80,7 +82,7 @@
     </div>
   </div>
   }
-  <main class="h-full pt-[80px] lg:pr-[26rem] transition-all">
+  <main class="h-full pt-[80px] xl:pr-[26rem] transition-all">
     <router-outlet />
   </main>
 </div>

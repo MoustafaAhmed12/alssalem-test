@@ -66,7 +66,7 @@ export type FormQuestion = FormGroup<{
 export type Form = FormGroup<{
   id: FormControl;
   name: FormControl;
-  successPercentage: FormControl;
+  passingPrecent: FormControl;
   durationInMinutes: FormControl;
   totalGrades: FormControl;
   tutorialId: FormControl;

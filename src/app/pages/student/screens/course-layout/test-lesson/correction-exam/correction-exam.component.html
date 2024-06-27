@@ -1,6 +1,8 @@
-<main class="grid grid-cols-1 mt-2 md:grid-cols-2 gap-y-6 md:gap-x-16">
+<main
+  class="grid grid-cols-1 mt-2 lg:grid-cols-2 place-items-center gap-y-6 md:gap-x-16"
+>
   <div class="relative grid col-span-1 place-items-center">
-    <canvas id="chart" width="429" height="429" class="!w-[430px] !h-[430px]">
+    <canvas id="chart" class="!w-[400px] !h-[400px] lg:w-[420px] lg:h-[420px]">
     </canvas>
     @if (correctionExamDetails) {
 
@@ -36,7 +38,7 @@
   </div>
   @if (correctionExamDetails) {
 
-  <div class="col-span-1">
+  <div class="w-10/12 col-span-1 md:w-fit">
     <section class="bg-white">
       <div class="container mx-auto">
         <div class="flex flex-wrap -mx-4">
@@ -258,12 +260,12 @@
 @if (correctionExamDetails) {
 
 <section class="bg-white mt-14">
-  <h2 class="my-3 text-xl font-semibold">نتائج المحاولات</h2>
+  <h2 class="my-3 text-xl font-semibold ps-4">نتائج المحاولات</h2>
   <div class="container mx-auto">
-    <div class="flex flex-wrap -mx-4">
-      <div class="w-full px-4">
-        <div class="max-w-full overflow-x-auto rounded-xl">
-          <table class="w-full table-auto">
+    <div class="flex flex-wrap">
+      <div class="w-full px-1 md:px-4">
+        <div class="overflow-x-scroll max-w-fit rounded-xl">
+          <table class="w-full text-sm table-auto md:text-base">
             <thead>
               <tr class="text-center bg-secondaryAdmin">
                 <td

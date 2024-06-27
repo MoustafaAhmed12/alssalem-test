@@ -54,7 +54,7 @@ export class ActionsExamComponent implements OnInit {
     this.examForm = this.fb.group({
       id: [this.examId === 0 ? 0 : this.examId],
       name: ['', [Validators.required]],
-      successPercentage: ['', [Validators.required]],
+      passingPrecent: ['', [Validators.required]],
       durationInMinutes: ['', [Validators.required]],
       tutorialId: [null, [Validators.required]],
       totalGrades: [1],
