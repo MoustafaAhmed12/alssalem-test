@@ -13,13 +13,19 @@
         alt="bgtitle"
       />
     </div>
-    <div class="absolute top-0 flex items-center w-full justify-evenly">
+    <div
+      class="absolute flex items-center w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 md:justify-evenly"
+    >
       @if (subCategoryName) { @switch (subCategoryName) { @case ('قدرات كمي') {
-      <h2 class="text-6xl font-bold text-primaryAdmin">دورات القدرات الكمي</h2>
-      <div class="w-2/6">
+      <h2
+        class="text-5xl font-bold leading-loose text-center md:text-right text-primaryAdmin"
+      >
+        دورات القدرات الكمي
+      </h2>
+      <div class="hidden md:basis-2/6">
         <img
           src="./../../../../../assets/imgs/كمي.png"
-          class="w-full"
+          class="w-full h-full"
           alt="دورات القدرات الكمي"
         />
       </div>
@@ -84,7 +90,7 @@
         />
       </div>
       } @case ('موهوب') {
-      <h2 class="text-6xl font-bold text-primaryAdmin">دورات موهوب</h2>
+      <h2 class="text-6xl font-bold text-primaryAdmin">دورات الموهوب</h2>
       <div class="w-2/6">
         <img
           src="./../../../../../assets/imgs/موهوب.png"

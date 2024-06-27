@@ -1,4 +1,4 @@
-<div class="px-16 py-8 m-auto">
+<div class="px-8 py-8 m-auto md:px-16">
   <div class="flex items-center justify-center w-full">
     <img
       src="./../../../../../../../assets/imgs/p0.png"
@@ -7,55 +7,50 @@
       loading="lazy"
     />
   </div>
-  <div class="">
-    <div class="grid grid-cols-1 place-items-center gap-y-2 md:grid-cols-2">
-      <div
-        class="relative flex flex-col items-center justify-center col-span-1"
+
+  <div class="grid grid-cols-1 place-items-center gap-y-2 md:grid-cols-2">
+    <div class="relative flex flex-col items-center justify-center col-span-1">
+      <img
+        class="w-full md:w-9/12"
+        src="./../../../../../../../assets/imgs/p1.png"
+        loading="lazy"
+        alt="important package-1"
+      />
+      <h2
+        class="absolute text-3xl font-extrabold text-black md:text-4xl bottom-28 md:bottom-40"
       >
-        <img
-          class="w-full md:w-9/12"
-          src="./../../../../../../../assets/imgs/p1.png"
-          loading="lazy"
-          alt="important package-1"
-        />
-        <h2
-          class="absolute text-3xl font-extrabold text-black md:text-4xl bottom-28 md:bottom-40"
+        بكدج القدرات
+      </h2>
+      <button class="grid place-items-center">
+        <a
+          [ngClass]="[secondaryColorBg, mainColorBgHover]"
+          class="px-12 py-3 text-xl font-semibold text-black transition-all rounded-full w-fit hover:text-white"
         >
-          بكدج القدرات
-        </h2>
-        <button class="grid place-items-center">
-          <a
-            [ngClass]="[secondaryColorBg, mainColorBgHover]"
-            class="px-12 py-3 text-xl font-semibold text-black transition-all rounded-full w-fit hover:text-white"
-          >
-            <span> اشترك الأن </span>
-          </a>
-        </button>
-      </div>
-      <div
-        class="relative flex flex-col items-center justify-center col-span-1"
+          <span> اشترك الأن </span>
+        </a>
+      </button>
+    </div>
+    <div class="relative flex flex-col items-center justify-center col-span-1">
+      <img
+        class="w-full md:w-9/12"
+        src="./../../../../../../../assets/imgs/p2.png"
+        loading="lazy"
+        alt="important package-1"
+      />
+      <h2
+        class="absolute text-3xl font-extrabold text-black md:text-4xl bottom-28 md:bottom-40"
       >
-        <img
-          class="w-full md:w-9/12"
-          src="./../../../../../../../assets/imgs/p2.png"
-          loading="lazy"
-          alt="important package-1"
-        />
-        <h2
-          class="absolute text-3xl font-extrabold text-black md:text-4xl bottom-28 md:bottom-40"
+        بكدج التحصيلي
+      </h2>
+      <button class="grid place-items-center">
+        <a
+          routerLink="/login"
+          [ngClass]="[secondaryColorBg, mainColorBgHover]"
+          class="px-12 py-3 text-xl font-semibold text-black transition-all rounded-full w-fit hover:text-white"
         >
-          بكدج التحصيلي
-        </h2>
-        <button class="grid place-items-center">
-          <a
-            routerLink="/login"
-            [ngClass]="[secondaryColorBg, mainColorBgHover]"
-            class="px-12 py-3 text-xl font-semibold text-black transition-all rounded-full w-fit hover:text-white"
-          >
-            <span> اشترك الأن </span>
-          </a>
-        </button>
-      </div>
+          <span> اشترك الأن </span>
+        </a>
+      </button>
     </div>
   </div>
 </div>

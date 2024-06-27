@@ -5,33 +5,88 @@
       '!bg-opacity-100 bg-white z-30 mt-12 w-full h-full': isLoading()
     }"
   ></div>
-  <div class="relative w-full mt-9">
+  <div class="relative w-full mt-11 md:mt-10 -z-50">
     <div class="w-full h-[32rem]">
       @if (parentCategoryName === 'تحصيلي' ) {
       <img
         src="./../../../../../../assets/imgs/تحصيلى/تحصيلى -02.png"
-        class="w-full h-full"
+        class="hidden w-full h-full md:block"
         loading="lazy"
         alt="تحصيلي"
       />
+      <div class="relative w-full h-full md:hidden">
+        <img
+          src="./../../../../../../assets/imgs/bgtitle.png"
+          class="w-full h-full"
+          loading="lazy"
+          alt="bg"
+        />
+        <h2
+          class="absolute font-bold -translate-x-1/2 -translate-y-1/2 text-7xl top-1/2 left-1/2 text-primaryAdmin"
+        >
+          التحصيلي
+        </h2>
+      </div>
       } @if (parentCategoryName === 'قدرات' ) {
       <img
         src="./../../../../../../assets/imgs/قدرات/قدرات  - Copy-01.png"
-        class="w-full h-full"
+        class="hidden w-full h-full md:block"
+        loading="lazy"
         alt="قدرات"
       />
+      <div class="relative w-full h-full md:hidden">
+        <img
+          src="./../../../../../../assets/imgs/bgtitle.png"
+          class="w-full h-full"
+          loading="lazy"
+          alt="bg"
+        />
+        <h2
+          class="absolute font-bold -translate-x-1/2 -translate-y-1/2 text-7xl top-1/2 left-1/2 text-primaryAdmin"
+        >
+          القدرات
+        </h2>
+      </div>
       } @if (parentCategoryName === 'موهبة' ) {
       <img
         src="./../../../../../../assets/imgs/موهبة/موهبة -02.png"
-        class="w-full h-full"
+        class="hidden w-full h-full md:block"
+        loading="lazy"
         alt="موهبة"
       />
+      <div class="relative w-full h-full md:hidden">
+        <img
+          src="./../../../../../../assets/imgs/bgtitle.png"
+          class="w-full h-full"
+          loading="lazy"
+          alt="bg"
+        />
+        <h2
+          class="absolute font-bold -translate-x-1/2 -translate-y-1/2 text-7xl top-1/2 left-1/2 text-primaryAdmin"
+        >
+          موهبة
+        </h2>
+      </div>
       } @if (parentCategoryName === 'قدارت باللغه الانجليزية' ) {
       <img
         src="./../../../../../../assets/imgs/قدرات انجليزى/قدرات انجليزى -02.png"
-        class="w-full h-full"
-        alt="قدارت باللغه الانجليزية"
+        class="hidden w-full h-full md:block"
+        loading="lazy"
+        alt="القدارت بالانجليزية"
       />
+      <div class="relative w-full h-full md:hidden">
+        <img
+          src="./../../../../../../assets/imgs/bgtitle.png"
+          class="w-full h-full"
+          loading="lazy"
+          alt="bg"
+        />
+        <h2
+          class="absolute font-bold leading-loose text-center -translate-x-1/2 -translate-y-1/2 text-7xl top-1/2 left-1/2 text-primaryAdmin"
+        >
+          القدارت بالإنجليزية
+        </h2>
+      </div>
       }
     </div>
   </div>
@@ -43,9 +98,87 @@
     "
     class="px-12 mt-8 place-items-center"
   >
-    @for (subCateogry of subCategories; track subCateogry.id; let odd = $odd) {
+    @if (parentCategoryName === 'تحصيلي' ) { @for (tahseli of tahselis; track
+    tahseli.id) {
+    <div class="grid place-items-center">
+      <div
+        [routerLink]="['/cateogry-tutorials/', tahseli.id]"
+        class="flex flex-col items-center justify-center mt-16"
+      >
+        <div
+          class="flex items-center justify-center w-full cursor-pointer hover:animate-pop"
+        >
+          <img
+            [src]="tahseli.img"
+            alt="feature2"
+            loading="lazy"
+            class="w-[27rem]"
+          />
+        </div>
+      </div>
+    </div>
+    } } @if (parentCategoryName === 'قدرات' ) { @for (qudrate of qudrates; track
+    qudrate.id) {
+    <div class="grid place-items-center">
+      <div
+        [routerLink]="['/cateogry-tutorials/', qudrate.id]"
+        class="flex flex-col items-center justify-center mt-16"
+      >
+        <div
+          class="flex items-center justify-center w-full cursor-pointer hover:animate-pop"
+        >
+          <img
+            [src]="qudrate.img"
+            alt="feature2"
+            loading="lazy"
+            class="w-[26rem]"
+          />
+        </div>
+      </div>
+    </div>
+    } } @if (parentCategoryName === 'موهبة' ) { @for (mah of mawhooba; track
+    mah.id) {
+    <div class="grid place-items-center">
+      <div
+        [routerLink]="['/cateogry-tutorials/', mah.id]"
+        class="flex flex-col items-center justify-center mt-16"
+      >
+        <div
+          class="flex items-center justify-center w-full cursor-pointer hover:animate-pop"
+        >
+          <img
+            [src]="mah.img"
+            alt="feature2"
+            loading="lazy"
+            class="w-[26rem]"
+          />
+        </div>
+      </div>
+    </div>
+    } } @if (parentCategoryName === 'قدارت باللغه الانجليزية' ) { @for
+    (qudrateEn of qudrateEng; track qudrateEn.id) {
+    <div class="grid place-items-center">
+      <div
+        [routerLink]="['/cateogry-tutorials/', qudrateEn.id]"
+        class="flex flex-col items-center justify-center mt-16"
+      >
+        <div
+          class="flex items-center justify-center w-full cursor-pointer hover:animate-pop"
+        >
+          <img
+            [src]="qudrateEn.img"
+            alt="feature2"
+            loading="lazy"
+            class="w-[26rem]"
+          />
+        </div>
+      </div>
+    </div>
+    } }
+
+    <!-- @for (subCateogry of subCategories; track subCateogry.id; let odd = $odd) {
     <app-cart [subCateogry]="subCateogry" [odd]="odd" />
-    }
+    } -->
   </div>
   @if (parentCategoryName === 'تحصيلي') {
 

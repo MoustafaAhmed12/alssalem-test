@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ResponseHeader } from '../../../shared/shared-model/model';
 import { Observable } from 'rxjs';
-import { ApiCacheService } from '../../../shared/services/api-cache.service';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -10,13 +9,6 @@ import { environment } from '../../../../environments/environment';
 })
 export class TutorilsStudentsService {
   http = inject(HttpClient);
-  apiCacheService = inject(ApiCacheService);
-
-  getAllCategories(): Observable<ResponseHeader> {
-    return this.apiCacheService.get<ResponseHeader>(
-      `${environment.BASE_URL}/api/Student/GetCategories`
-    );
-  }
 
   getCustomCategoryTutorials(id: { id: number }): Observable<ResponseHeader> {
     return this.http.post<ResponseHeader>(

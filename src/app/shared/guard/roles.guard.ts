@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Route, Router } from '@angular/router';
-import { AuthService } from '../../authentication/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 export const rolesGuard: CanActivateFn = (route, state) => {

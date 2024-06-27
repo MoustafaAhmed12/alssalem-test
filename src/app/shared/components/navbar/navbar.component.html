@@ -5,7 +5,7 @@
 >
   <div
     [ngClass]="{ 'bg-white shadow-lg': isScrolled }"
-    class="flex items-center justify-between px-6 mx-auto sm:px-8 md:px-12"
+    class="flex items-center justify-between px-6 mx-auto sm:px-8 lg:px-12"
   >
     <!-- Menu Links -->
     <div class="justify-between hidden w-full lg:flex" id="navbar-sticky">
@@ -24,20 +24,7 @@
             <span> الرئيسية</span>
           </a>
         </li>
-        @if (isLoading()) {
-        <div
-          class="flex items-center justify-center bg-transparent ps-2 gap-x-2"
-        >
-          <span class="sr-only">Loading...</span>
-          <div
-            class="h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"
-          ></div>
-          <div
-            class="h-3 w-3 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"
-          ></div>
-          <div class="w-3 h-3 bg-black rounded-full animate-bounce"></div>
-        </div>
-        } @for (category of AllCateories; track category.id ) {
+        @for (category of AllCateories; track category.id ) {
         <app-navbar-item [category]="category" />
         }
 
@@ -142,11 +129,10 @@
       [ngClass]="
         mobile_menu_show ? [mainColorBg, 'text-white'] : [mainColorBgHover]
       "
-      class="inline-flex items-center p-2 text-sm text-gray-500 transition-all rounded-lg me-2 lg:hidden focus:outline-none focus:ring-2"
+      class="inline-flex items-center p-2 text-sm text-gray-500 transition-all rounded-lg me-2 lg:hidden focus:outline-none"
       aria-controls="navbar-sticky"
       aria-expanded="false"
     >
-      <span class="sr-only">Open main menu</span>
       @if (mobile_menu_show) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -183,11 +169,11 @@
     <!-- End btn Icon In smaill Screen -->
   </div>
   <!-- mobile menu -->
-  <div [ngClass]="mobile_menu_show ? '' : 'hidden'" class="md:hidden">
+  <div [ngClass]="mobile_menu_show ? '' : 'hidden'" class="lg:hidden">
     <ul
-      class="flex flex-col p-4 mt-4 transition-all border border-gray-100 rounded-lg gap-y-2 bg-gray-50 lg:flex-row md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white"
+      class="flex flex-col p-4 transition-all border border-gray-100 rounded-bl-lg rounded-br-lg gap-y-2 bg-gray-50 lg:flex-row md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white"
     >
-      <li>
+      <li (click)="mobile_menu_clase()">
         <a
           routerLink="/"
           routerLinkActive="activeLink"
@@ -199,9 +185,11 @@
           <span> الرئيسية</span>
         </a>
       </li>
-      @for (category of AllCateories; track category.id ) {
-      <app-navbar-item [category]="category" />
-      }
+      <div (click)="mobile_menu_button()" class="px-2">
+        @for (category of AllCateories; track category.id ) {
+        <app-navbar-item [category]="category" />
+        }
+      </div>
       <li>
         <a
           (click)="mobile_menu_clase()"
@@ -212,7 +200,6 @@
           <span> من نحن؟</span>
         </a>
       </li>
-      <br />
       @if (!isAuth) {
       <div class="flex">
         <a
@@ -256,9 +243,10 @@
             'scale-100 border-t-2 bg-primaryAdmin border-secondaryAdmin':
               menu_show_Profile
           }"
-          class="absolute right-0 z-[100] flex flex-col items-center px-4 justify-center w-56 scale-0 overflow-hidden text-base text-white transition-all duration-500 rounded-bl-lg rounded-br-lg shadow-lg top-10"
+          class="absolute right-0 z-[100] flex flex-col items-center px-4 justify-center w-56 scale-0 overflow-hidden text-base text-white transition-all duration-500 rounded-bl-lg rounded-br-lg shadow-lg top-12"
         >
           <li
+            (click)="mobile_menu_clase()"
             routerLink="/profile"
             routerLinkActive="activeLink"
             class="px-2 py-2 transition-all cursor-pointer hover:text-secondaryAdmin"
@@ -266,6 +254,7 @@
             <span class="font-mont text-f6">الملف الشخصي</span>
           </li>
           <li
+            (click)="mobile_menu_clase()"
             class="px-2 py-2 transition-all cursor-pointer hover:text-secondaryAdmin"
             [routerLink]="['/user/settings']"
           >

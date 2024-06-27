@@ -8,7 +8,6 @@ import {
 } from '@angular/router';
 import { AuthService } from '../../../authentication/services/auth.service';
 import { environment } from '../../../../environments/environment';
-import { TutorilsStudentsService } from '../../../pages/student/services/tutorils-students.service';
 import { ToastrService } from 'ngx-toastr';
 import { NavbarItemComponent } from '../navbar-item/navbar-item.component';
 
@@ -33,13 +32,11 @@ export interface Category {
 })
 export class NavbarComponent implements OnInit {
   authService = inject(AuthService);
-  tutorilsStudentsService = inject(TutorilsStudentsService);
   toastr = inject(ToastrService);
   AllCateories: Category[] = [];
   router = inject(Router);
   isAuth: boolean = false;
   currentUser: any;
-  isLoading = signal<boolean>(false);
   mobile_menu_show = false;
   menu_show_Profile = false;
   isScrolled: boolean = false;
@@ -70,7 +67,92 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.isAuth = this.authService.isAuth();
     this.currentUser = this.authService.currentUser()?.userDto;
-    this.fetchAllCateogries();
+    this.AllCateories = [
+      {
+        id: 1,
+        name: 'قدرات',
+        children: [
+          {
+            id: 5,
+            name: 'قدرات كمي',
+            children: [],
+          },
+          {
+            id: 6,
+            name: 'قدرات لفظي',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: 'تحصيلي',
+        children: [
+          {
+            id: 7,
+            name: 'تحصيلي رياضيات',
+            children: [],
+          },
+          {
+            id: 8,
+            name: 'تحصيلي فيزياء',
+            children: [],
+          },
+          {
+            id: 9,
+            name: 'تحصيلي كيمياء',
+            children: [],
+          },
+          {
+            id: 10,
+            name: 'تحصيلي أحياء',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: 'موهبة',
+        children: [
+          {
+            id: 13,
+            name: 'كنجارو',
+            children: [],
+          },
+          {
+            id: 14,
+            name: 'موهوب',
+            children: [],
+          },
+          {
+            id: 15,
+            name: 'البرنامج الوطني للكشف عن الموهوبين',
+            children: [],
+          },
+          {
+            id: 16,
+            name: 'أولمبياد الرياضيات',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 4,
+        name: 'القدارت بالإنجليزية',
+        children: [
+          {
+            id: 11,
+            name: 'Verbal',
+            children: [],
+          },
+          {
+            id: 12,
+            name: 'Quantitative',
+            children: [],
+          },
+        ],
+      },
+    ];
   }
 
   showButton: boolean = false;
@@ -88,24 +170,5 @@ export class NavbarComponent implements OnInit {
   }
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // goToCatogryTutorials(cateogryId: { cateogryId: number }): void {
-  //   this.router.navigate(['/cateogry-tutorials/', cateogryId]);
-  // }
-
-  fetchAllCateogries(): void {
-    this.isLoading.set(true);
-    this.tutorilsStudentsService.getAllCategories().subscribe({
-      next: ({ result, statusCode, msg }) => {
-        if (statusCode == 200) {
-          this.AllCateories = result;
-          this.isLoading.update((v) => v === false);
-        } else {
-          this.toastr.error(msg);
-          this.isLoading.update((v) => v === false);
-        }
-      },
-    });
   }
 }

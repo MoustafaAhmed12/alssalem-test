@@ -15,6 +15,7 @@
   } @if (category.children?.length) {
   <a
     [routerLink]="['/sub-cateogry/', category.id]"
+    routerLinkActive="activeLink"
     [ngClass]="[secondaryColorBorder]"
     class="flex items-center p-2 transition-all rounded-tl-lg rounded-tr-lg gap-x-1"
   >
@@ -22,10 +23,8 @@
 
     <svg
       [ngClass]="menu_show ? 'rotate-180' : ''"
-      class="transition-transform size-6"
+      class="hidden transition-transform size-6 md:block"
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -44,7 +43,7 @@
         ? ['h-fit py-4 border-t-2', mainColorBg, secondaryColorBorder]
         : [mainColorBg]
     "
-    class="absolute right-0 z-[100] flex flex-col items-center justify-center w-56 h-0 overflow-hidden text-base text-white transition-all duration-500 rounded-bl-lg rounded-br-lg shadow-lg top-10"
+    class="absolute right-0 z-[350] flex flex-col items-center justify-center w-56 h-0 overflow-hidden text-base text-white transition-all duration-500 rounded-bl-lg rounded-br-lg shadow-lg top-10"
   >
     @for (dropItem of category.children;track $index) {
     <li
