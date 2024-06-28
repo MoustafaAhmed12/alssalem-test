@@ -1,13 +1,14 @@
 <div class="h-screen">
+  @if(isLoading() === false){
   <div class="h-[75px] xl:pr-[26rem] fixed inset-y-0 w-full z-40">
     <button
       (click)="show_menu()"
       [ngClass]="
         isShow
-          ? 'absolute top-8 xl:right-[26rem] right-80'
+          ? 'absolute top-20 xl:right-[26rem] right-80 text-red-600'
           : 'absolute top-8 right-6'
       "
-      class="transition-all duration-500"
+      class="font-bold transition-all duration-500 hover:scale-125"
     >
       @if (isShow ) {
       <svg
@@ -70,7 +71,10 @@
       </div>
     </div>
   </div>
-  @if(isLoading()) {
+  <main class="h-full pt-[80px] xl:pr-[26rem] transition-all">
+    <router-outlet />
+  </main>
+  } @if(isLoading()) {
   <div
     class="fixed z-[200] top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 bg-opacity-60"
   >
@@ -82,7 +86,4 @@
     </div>
   </div>
   }
-  <main class="h-full pt-[80px] xl:pr-[26rem] transition-all">
-    <router-outlet />
-  </main>
 </div>

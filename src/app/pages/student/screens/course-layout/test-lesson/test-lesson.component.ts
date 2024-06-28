@@ -191,7 +191,6 @@ export class TestLessonComponent implements OnInit {
           this.examDetails = result;
           this.time = this.examDetails.durationInMinutes;
           this.convertMinutesToTime(this.examDetails.durationInMinutes);
-          console.log(this.getQuestions);
           result.questions.forEach((question: any) => {
             const answers = question.answers.map((answer: any) => {
               return this.fb.group({
@@ -283,7 +282,6 @@ export class TestLessonComponent implements OnInit {
       this.takeTime = newTime - this.basicTimer?.get().tick_count;
     }
     this.correctionForm.get('durationInMinutes')?.setValue(this.takeTime);
-    console.log(this.correctionForm.value);
     this.correctionLoading.set(true);
     this.correctionExamService
       .correctStudentExam(this.correctionForm.value)

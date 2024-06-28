@@ -29,7 +29,6 @@ export class SubCateogryComponent implements OnInit {
   subCategories: any = [];
   categoryTutorials: any = [];
 
-  isTutorial: boolean = false;
   parentCategoryName: string = '';
   subCategoryName: string = '';
 
@@ -140,9 +139,7 @@ export class SubCateogryComponent implements OnInit {
     this.tutorilsStudentsService.getCustomCategoryTutorials(id).subscribe({
       next: ({ statusCode, result, msg }) => {
         if (statusCode === 200) {
-          this.isTutorial = result.isTutorial;
-          if (this.isTutorial === false) {
-            // this.subCategories = result.subCategories;
+          if (result.isTutorial === false) {
             this.parentCategoryName =
               result.subCategories[0].parentCategoryName;
           }

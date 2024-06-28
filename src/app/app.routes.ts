@@ -48,6 +48,7 @@ import { CheckoutComponent } from './pages/student/screens/checkout/checkout.com
 import { AllAttachmentsComponent } from './pages/instructor/screens/all-attachments/all-attachments.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { QuestionTypesComponent } from './pages/dashboard/screens/question-types/question-types.component';
+import { ConfirmEmailComponent } from './authentication/screens/confirm-email/confirm-email.component';
 
 export const routes: Routes = [
   // Auth Pages
@@ -62,6 +63,12 @@ export const routes: Routes = [
     component: RegisterComponent,
     canActivate: [authGuardLoggdIn],
     title: 'التسجل | السالم',
+  },
+  {
+    path: 'confirm-email',
+    component: ConfirmEmailComponent,
+    canActivate: [authGuardLoggdIn],
+    title: 'التأكد من الايميل | السالم',
   },
   {
     path: 'parent-register',

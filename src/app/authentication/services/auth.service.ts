@@ -34,6 +34,21 @@ export class AuthService {
   /// All Funs.
 
   // Login Fun.
+  studentGoogleLogin(): Observable<any> {
+    return this.http
+      .get<any>(
+        `${environment.BASE_URL}/api/Authentication/externalStudentLogin`
+      )
+      .pipe(
+        tap((res: any) => {
+          if (res.statusCode === 200) {
+            this.doLoggedUser(res.token, res.result);
+          }
+        })
+      );
+  }
+
+  // Login Fun.
   loginUser(userBody: any): Observable<any> {
     return this.http
       .post<any>(`${environment.BASE_URL}/api/Authentication/Login`, userBody)

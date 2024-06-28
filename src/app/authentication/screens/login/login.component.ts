@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import {
   FormBuilder,
   FormGroup,
@@ -20,17 +19,18 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { environment } from '../../../../environments/environment';
+import { SignWithGoogleComponent } from '../sign-with-google/sign-with-google.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    NavbarComponent,
     FormsModule,
     ReactiveFormsModule,
     NgClass,
     RouterLink,
     FontAwesomeModule,
+    SignWithGoogleComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -38,6 +38,8 @@ import { environment } from '../../../../environments/environment';
 export class LoginComponent {
   authService = inject(AuthService);
   toastr = inject(ToastrService);
+  router = inject(Router);
+  formBuilder = inject(FormBuilder);
   loginForm!: FormGroup;
   submitted = false;
   error: string = '';
@@ -52,8 +54,6 @@ export class LoginComponent {
   mainColorText: string = environment.mainColorText;
   secondaryColorBgHover: string = environment.secondaryColorBgHover;
   secondaryColorTextHover: string = environment.secondaryColorTextHover;
-
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   passwordFieldType: string = 'password';
   password: string = '';
@@ -77,6 +77,7 @@ export class LoginComponent {
       this.toastr.error('تأكد من إدخال البيانات');
       return;
     }
+    debugger;
     this.isLoading = true;
     this.authService.loginUser(this.loginForm.value).subscribe({
       next: ({ statusCode, result, msg }) => {

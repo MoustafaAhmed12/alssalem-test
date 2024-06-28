@@ -184,6 +184,7 @@ export class ActionsExamComponent implements OnInit {
             durationInMinutes: exam.durationInMinutes,
             totalGrades: exam.totalGrades,
           });
+          this.fetchAllQuestionTypes({ tutorialId: exam.tutorialId });
           exam.questions.forEach((question: any) => {
             const answers = question.answers.map((answer: any) => {
               return this.fb.group({
