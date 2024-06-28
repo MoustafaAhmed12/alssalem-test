@@ -17,6 +17,7 @@ import {
 })
 export class ExamsCourseComponent implements OnInit {
   @Input() exams!: any;
+  @Input() isOpened: boolean = false;
   route = inject(ActivatedRoute);
   router = inject(Router);
   location = inject(Location);

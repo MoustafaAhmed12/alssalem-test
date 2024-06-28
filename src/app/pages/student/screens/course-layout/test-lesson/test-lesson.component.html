@@ -1,3 +1,4 @@
+@if (examDetails.isOpened === true) {
 <section [@tabAnimation]="selectedTab" class="relative">
   <div
     class="absolute"
@@ -313,3 +314,21 @@
   </div>
   }
 </section>
+
+}@else {
+<div class="flex items-center justify-center w-full h-96">
+  <div
+    class="px-10 py-4 text-yellow-600 bg-orange-200 border-l-4 border-yellow-500 rounded-lg"
+  >
+    <p class="mb-2 text-lg font-semibold">عفواً</p>
+    <p>لا يمكن مشاهدة هذا الفيديو, يجب عليك شراء الدورة أولاً</p>
+    <div class="grid w-full place-items-center">
+      <button
+        class="px-6 py-2 mt-2 text-base text-center text-white border rounded-full bg-primaryAdmin hover:animate-pop"
+      >
+        العودة لشراء الدورة
+      </button>
+    </div>
+  </div>
+</div>
+}

@@ -412,7 +412,10 @@
             <p>لا يوجد محتوي لهذا الدورة بعد.</p>
           </div>
           }
-          <app-exams-course [exams]="tutorialDetails.exams" />
+          <app-exams-course
+            [exams]="tutorialDetails.exams"
+            [isOpened]="tutorialDetails.isOpen"
+          />
           <!-- <app-content-of-course /> -->
         </div>
         } @else {

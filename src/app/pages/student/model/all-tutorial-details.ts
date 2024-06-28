@@ -14,6 +14,7 @@ export interface TutorialDetails {
   totalVideoNumber: number;
   startDate: string;
   endDate: string;
+  isOpen: boolean;
   units: Unit[];
   exams: Exam[];
   comments: Comment[];

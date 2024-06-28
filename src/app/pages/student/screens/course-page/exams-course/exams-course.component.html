@@ -7,7 +7,7 @@
   >
     <div class="flex items-center justify-between w-full py-4 gap-x-2">
       <div class="flex items-center w-full gap-x-2">
-        <!-- @if (!unit.isOpen) {
+        @if (!isOpened) {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -23,13 +23,11 @@
           />
         </svg>
         }
-        <span
-          [ngClass]="unit.isOpen ? 'ps-6' : 'ps-0'"
-          class="text-lg font-bold"
-          >الوحدة: {{ unit.name }}</span
-        > -->
+        <span [ngClass]="isOpened ? 'ps-6' : 'ps-0'" class="text-lg font-bold"
+          >إختبارات علي الدورة</span
+        >
 
-        <span class="text-lg font-bold">إختبارات علي الدورة</span>
+        <!-- <span class="text-lg font-bold">إختبارات علي الدورة</span> -->
       </div>
       <div class="me-4">
         <svg
@@ -85,7 +83,7 @@
 
           <span class="text-base">{{ exam.examName }}</span>
         </div>
-        <!-- @if (!chapter.isOpen) {
+        @if (!isOpened) {
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +100,7 @@
             />
           </svg>
         </div>
-        } -->
+        }
       </div>
     </a>
     }
